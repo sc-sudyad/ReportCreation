@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Record Count Form</title>
+</head>
+<body>
+    <h1>Number of Records</h1>
+    <form id="recordForm" method="post" action="/get_record_count">
+        <label for="device_type">Device Type:</label>
+        <input type="text" id="device_type" name="device_type" required><br><br>
+
+        <label for="device_id">Device ID (optional):</label>
+        <select id="device_id" name="device_id">
+            <option value="">Select Device ID</option>
+            <option value="id1">ID1</option>
+            <option value="id2">ID2</option>
+            <option value="id3">ID3</option>
+            <option value="id4">ID4</option>
+        </select><br><br>
+
+        <label for="start_date">Start Date:</label>
+        <input type="date" id="start_date" name="start_date" required><br><br>
+
+        <label for="end_date">End Date:</label>
+        <input type="date" id="end_date" name="end_date" required><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <div id="resultContainer">
+        {% if result %}
+            <h2>Record Count Results</h2>
+            <p>Device Type: {{ result.device_type }}</p>
+            <p>Device ID: {{ result.device_id }}</p>
+            <p>Start Date: {{ result.start_date }}</p>
+            <p>End Date: {{ result.end_date }}</p>
+            <p>Number of Records: {{ result.record_count }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>

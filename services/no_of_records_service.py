@@ -34,7 +34,7 @@ class RecordsService:
         except Exception as e:
             raise DruidUtilError(f"Error executing SQL query: {sql_query}. Error: {e}")
 
-    def get_records_count_aggregated(self, device_id: str, device_type: str, start_date: str, end_date: str,
+    def get_records_count_aggregated(self, device_type: str, device_id: str, start_date: str, end_date: str,
                                      aggregation_type: str):
         try:
             aggregation_interval = AggregationUtils.get_aggregation_interval(aggregation_type)

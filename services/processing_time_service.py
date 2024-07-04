@@ -12,29 +12,6 @@ class ProcessingTimeService:
     def __init__(self, druid_util: DruidUtil):
         self.druid_util = druid_util
 
-    def get_processing_time(self, device_type: str, device_id: str, metric_type: str):
-        try:
-            metric_interval = AggregationUtils.get_metric_interval(metric_type)
-        except ValueError as e:
-            raise ValueError(str(e))
-
-        if device_id is not None:
-            sql_query = SQL_GET_PROCESSING_TIME_PER_DEVICE.format(
-                device_type=device_type,
-                device_id=device_id,
-                metric_interval=metric_interval
-
-            )
-        else:
-            sql_query = SQL_GET_PROCESSING_TIME_ALL_DEVICE.format(
-                metric_interval=metric_interval,
-                device_type=device_type
-            )
-        try:
-            return self.druid_util.get_record_count_dict(sql_query)
-        except Exception as e:
-            raise DruidUtilError(f"Error executing SQL query. {e}")
-
     def get_processing_time_data_range(self, device_type: str, device_id: str, start_date: str,
                                        end_date: str, metric_type: str):
         try:

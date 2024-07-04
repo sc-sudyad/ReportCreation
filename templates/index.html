@@ -3,41 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Record Count Form</title>
+    <title>Device Summary</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+            text-align: left;
+        }
+    </style>
 </head>
 <body>
-    <h1>Number of Records</h1>
-    <form id="recordForm" method="post" action="/get_record_count">
-        <label for="device_type">Device Type:</label>
-        <input type="text" id="device_type" name="device_type" required><br><br>
+    <h1>Device Summary</h1>
+    <h2>Processing Stats</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Device ID</th>
+                <th>Processing Stat Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stat in processing_stats %}
+            <tr>
+                <td>{{ stat.device_id }}</td>
+                <td>{{ stat.details }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
-        <label for="device_id">Device ID (optional):</label>
-        <select id="device_id" name="device_id">
-            <option value="">Select Device ID</option>
-            <option value="id1">ID1</option>
-            <option value="id2">ID2</option>
-            <option value="id3">ID3</option>
-            <option value="id4">ID4</option>
-        </select><br><br>
-
-        <label for="start_date">Start Date:</label>
-        <input type="date" id="start_date" name="start_date" required><br><br>
-
-        <label for="end_date">End Date:</label>
-        <input type="date" id="end_date" name="end_date" required><br><br>
-
-        <input type="submit" value="Submit">
-    </form>
-
-    <div id="resultContainer">
-        {% if result %}
-            <h2>Record Count Results</h2>
-            <p>Device Type: {{ result.device_type }}</p>
-            <p>Device ID: {{ result.device_id }}</p>
-            <p>Start Date: {{ result.start_date }}</p>
-            <p>End Date: {{ result.end_date }}</p>
-            <p>Number of Records: {{ result.record_count }}</p>
-        {% endif %}
-    </div>
+    <h2>Summary</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Device ID</th>
+                <th>Mean Processing Time (seconds)</th>
+                <th>Max Processing Time (seconds)</th>
+                <th>Min Processing Time (seconds)</th>
+                <th>Total Record Count</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for result in summary %}
+            <tr>
+                <td>{{ result.device_id }}</td>
+                <td>{{ result.mean_processing_time }}</td>
+                <td>{{ result.max_processing_time }}</td>
+                <td>{{ result.min_processing_time }}</td>
+                <td>{{ result.total_record_count }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
 </html>

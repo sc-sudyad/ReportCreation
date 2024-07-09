@@ -1,6 +1,6 @@
-from typing import Optional
+from typing import Optional, List
 
-from fastapi import FastAPI, Request, HTTPException, status
+from fastapi import FastAPI, Request, HTTPException, status, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse
@@ -44,10 +44,18 @@ async def get_processing_stats(device_type: str, device_id: Optional[str] = None
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@app.get("/api/get_summary", status_code=status.HTTP_200_OK)
-async def get_summary(device_type: str):
+@app.get("/api/get_summary_per_datasource", status_code=status.HTTP_200_OK)
+async def get_summary_per_datasource(datasource: str):
     try:
-        return kafka_service.get_summary(device_type)
+        return kafka_service.get_summary_per_datasource(datasource)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/api/get_summary_all_datasource", status_code=status.HTTP_200_OK)
+async def get_summary_all_datasource(datasource_query: List[str] = Query(...)):
+    try:
+        return kafka_service.get_summary_all_datasource(datasource_query)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -57,14 +65,18 @@ async def get_summary(device_type: str):
 async def get_records_count_date_range(device_type: str, start_date: str, end_date: str,
                                        device_id: Optional[str] = None):
     try:
-        count = records_service.get_records_count_date_range(device_type, device_id, start_date, end_date)
+        count = records_service.get_records_count_date_range(
+            device_type, device_id, start_date, end_date)
         return [{"count": count}]
     except InvalidDateFormatError as e:
-        raise HTTPException(status_code=400, detail=f"Invalid date format: {e}")
+        raise HTTPException(
+            status_code=400, detail=f"Invalid date format: {e}")
     except DruidUtilError as e:
-        raise HTTPException(status_code=500, detail=f"Error fetching data from Druid. {e}")
+        raise HTTPException(
+            status_code=500, detail=f"Error fetching data from Druid. {e}")
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Internal Server Error {e}")
+        raise HTTPException(
+            status_code=500, detail=f"Internal Server Error {e}")
 
 
 @app.get("/api2/get_records_count_aggregated", status_code=status.HTTP_200_OK)
@@ -74,11 +86,14 @@ async def get_records_count_aggregated(device_type: str, start_date: str, end_da
         return records_service.get_records_count_aggregated(device_type, device_id, start_date, end_date,
                                                             aggregation_type)
     except InvalidDateFormatError as e:
-        raise HTTPException(status_code=400, detail=f"Invalid date format: {e}")
+        raise HTTPException(
+            status_code=400, detail=f"Invalid date format: {e}")
     except DruidUtilError as e:
-        raise HTTPException(status_code=500, detail=f"Error fetching data from Druid. {e}")
+        raise HTTPException(
+            status_code=500, detail=f"Error fetching data from Druid. {e}")
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Internal Server Error {e}")
+        raise HTTPException(
+            status_code=500, detail=f"Internal Server Error {e}")
 
 
 # Processing time-related endpoints
@@ -89,11 +104,14 @@ async def get_processing_time_date_range(device_type: str, start_date: str, end_
         return processing_service.get_processing_time_data_range(device_type, device_id, start_date, end_date,
                                                                  metric_type)
     except InvalidDateFormatError as e:
-        raise HTTPException(status_code=400, detail=f"Invalid date format: {e}")
+        raise HTTPException(
+            status_code=400, detail=f"Invalid date format: {e}")
     except DruidUtilError as e:
-        raise HTTPException(status_code=500, detail=f"Error fetching data from Druid. {e}")
+        raise HTTPException(
+            status_code=500, detail=f"Error fetching data from Druid. {e}")
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Internal Server Error {e}")
+        raise HTTPException(
+            status_code=500, detail=f"Internal Server Error {e}")
 
 
 @app.get("/api3/get_processing_time_aggregated", status_code=status.HTTP_200_OK)
@@ -103,17 +121,28 @@ async def get_processing_time_aggregated(device_type: str, start_date: str, end_
         return processing_service.get_processing_time_aggregated(device_type, device_id, start_date, end_date,
                                                                  aggregation_type, metric_type)
     except InvalidDateFormatError as e:
-        raise HTTPException(status_code=400, detail=f"Invalid date format: {e}")
+        raise HTTPException(
+            status_code=400, detail=f"Invalid date format: {e}")
     except DruidUtilError as e:
-        raise HTTPException(status_code=500, detail=f"Error fetching data from Druid. {e}")
+        raise HTTPException(
+            status_code=500, detail=f"Error fetching data from Druid. {e}")
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Internal Server Error {e}")
+        raise HTTPException(
+            status_code=500, detail=f"Internal Server Error {e}")
+
+
+datasources = ["kafka-connection-test", "WaterMeter-Test"]
 
 
 # Define root endpoint
 @app.get("/", response_class=HTMLResponse)
 async def read_root(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request, "name": "Your Name Here"})
+    try:
+        summary_all_datasource = kafka_service.get_summary_all_datasource(
+            datasources=datasources)
+        return templates.TemplateResponse("index.html", {"request": request, "summary": summary_all_datasource})
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 
 if __name__ == "__main__":

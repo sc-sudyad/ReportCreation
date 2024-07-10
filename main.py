@@ -37,9 +37,9 @@ processing_service = ProcessingTimeService(druid_util=druid_util)
 
 # Kafka-related endpoints
 @app.get("/api/get_processing_stats", status_code=status.HTTP_200_OK)
-async def get_processing_stats(device_type: str, device_id: Optional[str] = None):
+async def get_processing_stats(datasource: str, device_id: Optional[str] = None):
     try:
-        return kafka_service.get_processing_stats(device_type, device_id)
+        return kafka_service.get_processing_stats(datasource, device_id)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -62,11 +62,11 @@ async def get_summary_all_datasource(datasource_query: List[str] = Query(...)):
 
 # Records-related endpoints
 @app.get("/api2/get_records_count_date_range", status_code=status.HTTP_200_OK)
-async def get_records_count_date_range(device_type: str, start_date: str, end_date: str,
+async def get_records_count_date_range(datasource: str, start_date: str, end_date: str,
                                        device_id: Optional[str] = None):
     try:
         count = records_service.get_records_count_date_range(
-            device_type, device_id, start_date, end_date)
+            datasource, device_id, start_date, end_date)
         return [{"count": count}]
     except InvalidDateFormatError as e:
         raise HTTPException(
@@ -80,10 +80,10 @@ async def get_records_count_date_range(device_type: str, start_date: str, end_da
 
 
 @app.get("/api2/get_records_count_aggregated", status_code=status.HTTP_200_OK)
-async def get_records_count_aggregated(device_type: str, start_date: str, end_date: str, aggregation_type: str,
+async def get_records_count_aggregated(datasource: str, start_date: str, end_date: str, aggregation_type: str,
                                        device_id: Optional[str] = None):
     try:
-        return records_service.get_records_count_aggregated(device_type, device_id, start_date, end_date,
+        return records_service.get_records_count_aggregated(datasource, device_id, start_date, end_date,
                                                             aggregation_type)
     except InvalidDateFormatError as e:
         raise HTTPException(
@@ -98,10 +98,10 @@ async def get_records_count_aggregated(device_type: str, start_date: str, end_da
 
 # Processing time-related endpoints
 @app.get("/api3/get_processing_time_date_range", status_code=status.HTTP_200_OK)
-async def get_processing_time_date_range(device_type: str, start_date: str, end_date: str, metric_type: str,
+async def get_processing_time_date_range(datasource: str, start_date: str, end_date: str, metric_type: str,
                                          device_id: Optional[str] = None):
     try:
-        return processing_service.get_processing_time_data_range(device_type, device_id, start_date, end_date,
+        return processing_service.get_processing_time_data_range(datasource, device_id, start_date, end_date,
                                                                  metric_type)
     except InvalidDateFormatError as e:
         raise HTTPException(
@@ -115,10 +115,10 @@ async def get_processing_time_date_range(device_type: str, start_date: str, end_
 
 
 @app.get("/api3/get_processing_time_aggregated", status_code=status.HTTP_200_OK)
-async def get_processing_time_aggregated(device_type: str, start_date: str, end_date: str, aggregation_type: str,
+async def get_processing_time_aggregated(datasource: str, start_date: str, end_date: str, aggregation_type: str,
                                          metric_type: str, device_id: Optional[str] = None):
     try:
-        return processing_service.get_processing_time_aggregated(device_type, device_id, start_date, end_date,
+        return processing_service.get_processing_time_aggregated(datasource, device_id, start_date, end_date,
                                                                  aggregation_type, metric_type)
     except InvalidDateFormatError as e:
         raise HTTPException(

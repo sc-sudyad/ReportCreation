@@ -33,6 +33,7 @@
             margin-top: 20px;
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -51,7 +52,8 @@
         <tbody>
             {% for item in summary %}
             <tr>
-                <td class="datasource" onclick="fetchDeviceIds('{{ item.datasource }}')">{{ item.datasource }}</td>
+                <td class="datasource" onclick="fetchDeviceIds('{{ item.datasource }}')">{{ item.datasource }}
+                </td>
                 <td>{{ item.device_id_count }}</td>
                 <td>{{ item.mean_processing_time }}</td>
                 <td>{{ item.min_processing_time }}</td>
@@ -102,7 +104,8 @@
             </select>
             <button type="submit">Filter</button>
         </form>
-        <div id="result2"></div>
+        <div id="result2">
+        </div>
 
         <h1>Get Processing Time Date Range</h1>
         <form id="form3">
@@ -158,8 +161,8 @@
         </form>
         <div id="result4"></div>
     </div>
-
     <script>
+        let datasource = '';
         function updateDeviceIdOptions(deviceIds) {
             const deviceIdSelects = document.querySelectorAll('select[name="device_id"]');
             deviceIdSelects.forEach(select => {
@@ -169,10 +172,12 @@
                 });
             });
         }
-
-        async function fetchDeviceIds(datasource) {
+        async function fetchDeviceIds(value) {
+            datasource = value;
+            console.log(datasource);
             document.getElementById('loading').style.display = 'block';
             document.getElementById('main').style.display = 'none';
+
             // Reset forms when a new datasource is selected
             document.getElementById('form1').reset();
             document.getElementById('form2').reset();
@@ -182,7 +187,7 @@
             document.getElementById('result2').innerHTML = '';
             document.getElementById('result3').innerHTML = '';
             document.getElementById('result4').innerHTML = '';
-            let url = `/api/get_summary_per_datasource?datasource=${encodeURIComponent(datasource)}`;
+            let url = `/api/get_summary_per_datasource?datasource=${datasource}`;
 
             try {
                 const response = await fetch(url);
@@ -207,39 +212,39 @@
         }
 
         document.getElementById('form1').addEventListener('submit', async function (event) {
-                event.preventDefault();
-                let device_id = document.getElementById('device_id1').value;
-                let start_date = document.getElementById('start_date1').value;
-                let end_date = document.getElementById('end_date1').value;
+            event.preventDefault();
+            let device_id = document.getElementById('device_id1').value;
+            let start_date = document.getElementById('start_date1').value;
+            let end_date = document.getElementById('end_date1').value;
 
-                let url = `/api2/get_records_count_date_range?device_type=kafka-connection-test&start_date=${start_date}&end_date=${end_date}`;
-                if (device_id) {
-                    url += `&device_id=${device_id}`;
+            let url = `/api2/get_records_count_date_range?datasource=${datasource}&start_date=${start_date}&end_date=${end_date}`;
+            if (device_id) {
+                url += `&device_id=${device_id}`;
+            }
+
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+
+                if (Array.isArray(data) && data.length > 0) {
+                    document.getElementById('result1').innerHTML = `<h2>Records Count: ${data[0].count}</h2>`;
+                } else {
+                    document.getElementById('result1').innerHTML = `<h2>No data found</h2>`;
                 }
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                document.getElementById('result1').innerHTML = `<h2>Error fetching data</h2>`;
+            }
+        });
 
-                try {
-                    const response = await fetch(url);
-                    const data = await response.json();
-
-                    if (Array.isArray(data) && data.length > 0) {
-                        document.getElementById('result1').innerHTML = `<h2>Records Count: ${data[0].count}</h2>`;
-                    } else {
-                        document.getElementById('result1').innerHTML = `<h2>No data found</h2>`;
-                    }
-                } catch (error) {
-                    console.error('Error fetching data:', error);
-                    document.getElementById('result1').innerHTML = `<h2>Error fetching data</h2>`;
-                }
-            });
-
-            document.getElementById('form2').addEventListener('submit', async function (event) {
-                event.preventDefault();
+        document.addEventListener('DOMContentLoaded', function () {
+            async function fetchDataAndDrawChart() {
                 let device_id = document.getElementById('device_id2').value;
                 let start_date = document.getElementById('start_date2').value;
                 let end_date = document.getElementById('end_date2').value;
                 let aggregation_type = document.getElementById('aggregation_type1').value;
 
-                let url = `/api2/get_records_count_aggregated?device_type=kafka-connection-test&start_date=${start_date}&end_date=${end_date}&aggregation_type=${aggregation_type}`;
+                let url = `/api2/get_records_count_aggregated?datasource=${datasource}&start_date=${start_date}&end_date=${end_date}&aggregation_type=${aggregation_type}`;
                 if (device_id) {
                     url += `&device_id=${device_id}`;
                 }
@@ -248,7 +253,26 @@
                     const response = await fetch(url);
                     const data = await response.json();
 
+                    const mainContainer = document.getElementById('result2');
+                    mainContainer.innerHTML = '';
+
                     if (Array.isArray(data) && data.length > 0) {
+                        const labels = data.map(row => new Date(row.__time).toLocaleString());
+                        const values = data.map(row => row.record_count);
+
+                        const table = document.createElement('div');
+                        table.style.maxHeight = '400px';
+                        table.style.overflowY = 'auto';
+                        table.style.maxWidth = "400px";
+                        table.style.marginTop = "20px";
+                        table.classList.add('table');
+
+                        const chart = document.createElement('div');
+                        chart.classList.add('chart-container');
+                        const chartCanvas = document.createElement('canvas');
+                        chartCanvas.id = 'myChart';
+                        chart.appendChild(chartCanvas);
+
                         let result = `<table border="1">
                             <tr>
                                 <th>Time</th>
@@ -256,87 +280,121 @@
                             </tr>`;
                         data.forEach(row => {
                             result += `<tr>
-                            <td>${new Date(row.__time).toLocaleString()}</td>
-                            <td>${row.record_count}</td>
-                          </tr>`;
-                        });
-                        result += `</table>`;
-                        document.getElementById('result2').innerHTML = result;
-                    } else {
-                        document.getElementById('result2').innerHTML = `<h2>No data found</h2>`;
-                    }
-                } catch (error) {
-                    console.error('Error fetching data:', error);
-                    document.getElementById('result2').innerHTML = `<h2>Error fetching data</h2>`;
-                }
-            });
-
-            document.getElementById('form3').addEventListener('submit', async function (event) {
-                event.preventDefault();
-                let device_id = document.getElementById('device_id3').value;
-                let start_date = document.getElementById('start_date3').value;
-                let end_date = document.getElementById('end_date3').value;
-                let metric_type = document.getElementById('metric_type1').value;
-
-                let url = `/api3/get_processing_time_date_range?device_type=kafka-connection-test&start_date=${start_date}&end_date=${end_date}&metric_type=${metric_type}`;
-                if (device_id) {
-                    url += `&device_id=${device_id}`;
-                }
-
-                try {
-                    const response = await fetch(url);
-                    const data = await response.json();
-
-                    if (Array.isArray(data) && data.length > 0) {
-                        document.getElementById('result3').innerHTML = `<h2>Processing Time: ${data[0].time_diff_in_seconds}</h2>`;
-                    } else {
-                        document.getElementById('result3').innerHTML = `<h2>No data found</h2>`;
-                    }
-                } catch (error) {
-                    console.error('Error fetching data:', error);
-                    document.getElementById('result3').innerHTML = `<h2>Error fetching data</h2>`;
-                }
-            });
-
-            document.getElementById('form4').addEventListener('submit', async function (event) {
-                event.preventDefault();
-                let device_id = document.getElementById('device_id4').value;
-                let start_date = document.getElementById('start_date4').value;
-                let end_date = document.getElementById('end_date4').value;
-                let aggregation_type = document.getElementById('aggregation_type2').value;
-                let metric_type = document.getElementById('metric_type2').value;
-
-                let url = `/api3/get_processing_time_aggregated?device_type=kafka-connection-test&start_date=${start_date}&end_date=${end_date}&aggregation_type=${aggregation_type}&metric_type=${metric_type}`;
-                if (device_id) {
-                    url += `&device_id=${device_id}`;
-                }
-
-                try {
-                    const response = await fetch(url);
-                    const data = await response.json();
-
-                    if (Array.isArray(data) && data.length > 0) {
-                        let result = `<table border="1">
-                            <tr>
-                                <th>Time</th>
-                                <th>Time Difference in Seconds</th>
+                                <td>${new Date(row.__time).toLocaleString()}</td>
+                                <td>${row.record_count}</td>
                             </tr>`;
-                        data.forEach(row => {
-                            result += `<tr>
-                            <td>${new Date(row.__time).toLocaleString()}</td>
-                            <td>${row.time_diff_in_seconds}</td>
-                          </tr>`;
                         });
                         result += `</table>`;
-                        document.getElementById('result4').innerHTML = result;
+                        table.innerHTML = result;
+                        mainContainer.appendChild(table);
+                        mainContainer.appendChild(chart);
+
+                        new Chart(chartCanvas, {
+                            type: 'line',
+                            data: {
+                                labels: labels,
+                                datasets: [{
+                                    label: 'Record Count',
+                                    data: values,
+                                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                                    borderColor: 'rgba(54, 162, 235, 1)',
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    y: {
+                                        beginAtZero: true
+                                    }
+                                }
+                            }
+                        });
+
                     } else {
-                        document.getElementById('result4').innerHTML = `<h2>No data found</h2>`;
+                        const chartContainer = document.getElementById('result2');
+                        chartContainer.innerHTML = `<h2>No data found</h2>`;
                     }
                 } catch (error) {
                     console.error('Error fetching data:', error);
-                    document.getElementById('result4').innerHTML = `<h2>Error fetching data</h2>`;
+                    const chartContainer = document.getElementById('result2');
+                    chartContainer.innerHTML = `<h2>Error fetching data</h2>`;
                 }
+            }
+
+            // Event listener for form submission
+            document.getElementById('form2').addEventListener('submit', function (event) {
+                event.preventDefault();
+                fetchDataAndDrawChart();
             });
+        });
+
+
+        document.getElementById('form3').addEventListener('submit', async function (event) {
+            event.preventDefault();
+            let device_id = document.getElementById('device_id3').value;
+            let start_date = document.getElementById('start_date3').value;
+            let end_date = document.getElementById('end_date3').value;
+            let metric_type = document.getElementById('metric_type1').value;
+
+            let url = `/api3/get_processing_time_date_range?datasource=${datasource}&start_date=${start_date}&end_date=${end_date}&metric_type=${metric_type}`;
+            if (device_id) {
+                url += `&device_id=${device_id}`;
+            }
+
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+
+                if (Array.isArray(data) && data.length > 0) {
+                    document.getElementById('result3').innerHTML = `<h2>Processing Time: ${data[0].time_diff_in_seconds}</h2>`;
+                } else {
+                    document.getElementById('result3').innerHTML = `<h2>No data found</h2>`;
+                }
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                document.getElementById('result3').innerHTML = `<h2>Error fetching data</h2>`;
+            }
+        });
+
+        document.getElementById('form4').addEventListener('submit', async function (event) {
+            event.preventDefault();
+            let device_id = document.getElementById('device_id4').value;
+            let start_date = document.getElementById('start_date4').value;
+            let end_date = document.getElementById('end_date4').value;
+            let aggregation_type = document.getElementById('aggregation_type2').value;
+            let metric_type = document.getElementById('metric_type2').value;
+
+            let url = `/api3/get_processing_time_aggregated?datasource=${datasource}&start_date=${start_date}&end_date=${end_date}&aggregation_type=${aggregation_type}&metric_type=${metric_type}`;
+            if (device_id) {
+                url += `&device_id=${device_id}`;
+            }
+
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+
+                if (Array.isArray(data) && data.length > 0) {
+                    let result = `<table border="1">
+                        <tr>
+                            <th>Time</th>
+                            <th>Time Difference in Seconds</th>
+                        </tr>`;
+                    data.forEach(row => {
+                        result += `<tr>
+                        <td>${new Date(row.__time).toLocaleString()}</td>
+                        <td>${row.time_diff_in_seconds}</td>
+                      </tr>`;
+                    });
+                    result += `</table>`;
+                    document.getElementById('result4').innerHTML = result;
+                } else {
+                    document.getElementById('result4').innerHTML = `<h2>No data found</h2>`;
+                }
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                document.getElementById('result4').innerHTML = `<h2>Error fetching data</h2>`;
+            }
+        });
     </script>
 </body>
 

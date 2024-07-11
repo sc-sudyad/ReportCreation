@@ -5,12 +5,12 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse
 
-from services.record_type_service import RecordTypeService
+from services.summary_service import SummaryService
 from services.no_of_records_service import RecordsService
 from services.processing_time_service import ProcessingTimeService
 from repo.kafka_util import KafkaUtil
 from repo.druid_util import DruidUtil
-from exception_handling.druid_exception import DruidUtilError
+from exception_handling.exception import DruidUtilError, KafkaUtilError
 from exception_handling.invalid_date_format import InvalidDateFormatError
 
 app = FastAPI()
@@ -30,32 +30,27 @@ templates = Jinja2Templates(directory="./templates")
 # Initialize utilities and services
 druid_util = DruidUtil()
 kafka_util = KafkaUtil()
-kafka_service = RecordTypeService(kafka_util=kafka_util, druid_util=druid_util)
+summary_service = SummaryService(kafka_util=kafka_util, druid_util=druid_util)
 records_service = RecordsService(druid_util=druid_util)
 processing_service = ProcessingTimeService(druid_util=druid_util)
 
 
 # Kafka-related endpoints
 @app.get("/api/get_processing_stats", status_code=status.HTTP_200_OK)
-async def get_processing_stats(datasource: str, device_id: Optional[str] = None):
+async def get_processing_stats(input_topic: str, output_topic: str, device_type: Optional[str] = None,
+                               device_id: Optional[str] = None):
     try:
-        return kafka_service.get_processing_stats(datasource, device_id)
+        return summary_service.get_processing_stats(input_topic, output_topic, device_type, device_id)
+    except KafkaUtilError as e:
+        raise HTTPException(status_code=500, detail=f"KafkaUtilError occurred: {e}")
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-
-@app.get("/api/get_summary_per_datasource", status_code=status.HTTP_200_OK)
-async def get_summary_per_datasource(datasource: str):
-    try:
-        return kafka_service.get_summary_per_datasource(datasource)
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        raise HTTPException(status_code=500, detail=f"Internal Server Error: {e}")
 
 
 @app.get("/api/get_summary_all_datasource", status_code=status.HTTP_200_OK)
 async def get_summary_all_datasource(datasource_query: List[str] = Query(...)):
     try:
-        return kafka_service.get_summary_all_datasource(datasource_query)
+        return summary_service.get_summary_all_datasource(datasource_query)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -138,7 +133,7 @@ datasources = ["kafka-connection-test", "WaterMeter-Test"]
 @app.get("/", response_class=HTMLResponse)
 async def read_root(request: Request):
     try:
-        summary_all_datasource = kafka_service.get_summary_all_datasource(
+        summary_all_datasource = summary_service.get_summary_all_datasource(
             datasources=datasources)
         return templates.TemplateResponse("index.html", {"request": request, "summary": summary_all_datasource})
     except Exception as e:

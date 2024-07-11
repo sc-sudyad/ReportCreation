@@ -4,7 +4,7 @@ from typing import List, Dict, Any
 
 import requests
 from config.druid_config import DruidConfig
-from exception_handling.druid_exception import DruidUtilError
+from exception_handling.exception import DruidUtilError
 
 
 class DruidUtil:
@@ -31,7 +31,7 @@ class DruidUtil:
             else:
                 raise DruidUtilError()
         except Exception as e:
-            raise DruidUtilError(f"Error executing SQL query. {e}")
+            raise DruidUtilError(f"{e}")
 
     def get_record_count_dict(self, sql_query: str) -> List[Dict[str, Any]]:
         try:
@@ -50,4 +50,4 @@ class DruidUtil:
             else:
                 raise DruidUtilError()
         except Exception as e:
-            raise DruidUtilError(f"Error executing SQL query. {e}")
+            raise DruidUtilError(f"{e}")

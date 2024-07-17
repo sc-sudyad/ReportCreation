@@ -1,9 +1,13 @@
 import json
+import logging
 from json import JSONDecodeError
 
 from confluent_kafka import Consumer
 from config.kafka_config import KafkaConfig
 from exception_handling.exception import KafkaUtilError
+
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO)
 
 
 class KafkaUtil:
@@ -41,10 +45,13 @@ class KafkaUtil:
             else:
                 raise KafkaUtilError(f"Unknown parse type: {parse_type}")
         except JSONDecodeError as e:
+            logger.error(f"Failed to decode JSON: {e}")
             raise KafkaUtilError(f"Failed to decode JSON: {e}")
         except KeyError as e:
+            logger.error(f"Key error: {e}")
             raise KafkaUtilError(f"Key error: {e}")
         except Exception as e:
+            logger.error(f"Unexpected error: {e}")
             raise KafkaUtilError(f"Unexpected error: {e}")
 
         return temp_device_type, temp_device_id
@@ -53,11 +60,12 @@ class KafkaUtil:
         self.create_consumer()
         self.consumer.subscribe([input_topic])
         total_count = 0
+        logger.info(f"Starting to consume messages from topic: {input_topic}")
         try:
             while True:
                 msg = self.consumer.consume(num_messages=1, timeout=1.0)
                 if not msg:
-                    print("No more messages or empty message received. Exiting.")
+                    logger.info("No more messages or empty message received. Exiting.")
                     break
                 try:
                     json_data = json.loads(msg[0].value().decode('utf-8'))
@@ -74,12 +82,16 @@ class KafkaUtil:
                             total_count += 1
 
                 except KafkaUtilError as e:
-                    print(f"Error while parsing message: {e}")
+                    logger.error(f"Error while parsing message: {e}")
                 except Exception as e:
-                    raise KafkaUtilError(f"Unexpected error: {e}")
+                    logger.error(f"Unexpected error while processing message:", exc_info=True)
+                    raise KafkaUtilError(f"Unexpected error while processing message: {e}")
         except Exception as e:
-            raise KafkaUtilError(f"Unexpected error: {e}")
+            logger.error(f"Unexpected error during message consumption: {e}", exc_info=True)
+            raise KafkaUtilError(f"Unexpected error during message consumption: {e}")
         finally:
             if self.consumer is not None:
                 self.consumer.close()
+                logger.info("Kafka consumer closed")
+        logger.info(f"Total record count: {total_count}")
         return total_count

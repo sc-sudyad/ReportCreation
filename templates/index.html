@@ -33,15 +33,25 @@
             margin-top: 10px;
         }
 
-        .table {
+        .aggregated_result {
             margin-top: 20px;
-            max-width: 400px;
-            max-height: 400px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .aggregated_table {
+            flex: 1;
+            margin-right: 5px;
+            max-width: 30%;
+            max-height: 600px;
             overflow-y: auto;
         }
 
         .chart {
-            margin-top: 20px;
+            flex: 1;
+            max-width: 60%;
         }
 
         .form input,
@@ -117,12 +127,17 @@
                 <option value="weekly">Weekly</option>
                 <option value="monthly">Monthly</option>
             </select>
+            <label for="graph_type1">Graph Type:</label>
+            <select id="graph_type1" name="graph_type">
+                <option value="line">Line Chart</option>
+                <option value="bar">Bar Chart</option>
+            </select>
             <button type="submit">Filter</button>
         </form>
-        <div id="result2">
-            <div id="table1" class="table"></div>
-            <canvas id="lineChart1" class="chart"></canvas>
-            <canvas id="barChart1" class="chart"></canvas>
+        <div id="result2" class="aggregated_result">
+            <div id="table1" class="aggregated_table"></div>
+            <canvas id="lineChart1" class="chart" style="display: none;"></canvas>
+            <canvas id="barChart1" class="chart" style="display: none;"></canvas>
         </div>
 
         <h1>Get Processing Time Date Range</h1>
@@ -174,13 +189,17 @@
                 <option value="min">Min Processing Time</option>
                 <option value="total">Total Record Count</option>
             </select>
-
+            <label for="graph_type2">Graph Type:</label>
+            <select id="graph_type2" name="graph_type">
+                <option value="line">Line Chart</option>
+                <option value="bar">Bar Chart</option>
+            </select>
             <button type="submit">Filter</button>
         </form>
-        <div id="result4">
-            <div id="table2" class="table"></div>
-            <canvas id="lineChart2" class="chart"></canvas>
-            <canvas id="barChart2" class="chart"></canvas>
+        <div id="result4" class="aggregated_result">
+            <div id="table2" class="aggregated_table"></div>
+            <canvas id="lineChart2" class="chart" style="display: none;"></canvas>
+            <canvas id="barChart2" class="chart" style="display: none;"></canvas>
         </div>
     </div>
     <script>
@@ -209,7 +228,7 @@
             document.getElementById('form2').reset();
             document.getElementById('form3').reset();
             document.getElementById('form4').reset();
-            let url = `/api/get_summary_per_datasource?datasource=${datasource}`;
+            let url = `/api/get_device_id_per_datasource?datasource=${datasource}`;
 
             try {
                 const response = await fetch(url);
@@ -254,8 +273,8 @@
                 resultContainer.innerHTML = `<h2>Error fetching data</h2>`;
             }
         });
-
-        async function makeTableAndChart(url, lineChartId, barChartId, tableId, resultContainer, recordType) {
+        let chartInstance = null;
+        async function makeTableAndChart(url, lineChartId, barChartId, tableId, resultContainer, recordType, graph_type) {
             try {
                 const response = await fetch(url);
                 const data = await response.json();
@@ -263,8 +282,12 @@
                     const labels = data.map(row => new Date(row.__time).toLocaleString());
                     const values = data.map(row => row.res);
 
+                    // Destroy existing part
+                    if (chartInstance) chartInstance.destroy();
+
                     const lineChart = document.getElementById(lineChartId);
                     const barChart = document.getElementById(barChartId);
+
                     const table = document.getElementById(tableId);
 
                     let result = `<table border="1">
@@ -281,8 +304,8 @@
                     result += `</table>`;
                     table.innerHTML = result;
 
-                    new Chart(lineChart, {
-                        type: 'line',
+                    const chartConfig = {
+                        type: graph_type,
                         data: {
                             labels: labels,
                             datasets: [{
@@ -300,33 +323,24 @@
                                 }
                             }
                         }
-                    });
+                    };
+                    if (graph_type == 'line') {
+                        lineChart.style.display = 'block';
+                        chartInstance = new Chart(lineChart, chartConfig);
+                    } else {
+                        barChart.style.display = 'block';
+                        chartInstance = new Chart(barChart, chartConfig);
+                    }
 
-                    new Chart(barChart, {
-                        type: 'bar',
-                        data: {
-                            labels: labels,
-                            datasets: [{
-                                label: recordType,
-                                data: values,
-                                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                                borderColor: 'rgba(54, 162, 235, 1)',
-                                borderWidth: 1
-                            }]
-                        },
-                        options: {
-                            scales: {
-                                y: {
-                                    beginAtZero: true
-                                }
-                            }
-                        }
-                    });
 
                 } else {
+                    lineChart.style.display = 'none';
+                    barChart.style.display = 'none';
                     resultContainer.innerHTML = `<h2>No data found</h2>`;
                 }
             } catch (error) {
+                lineChart.style.display = 'none';
+                barChart.style.display = 'none';
                 console.error('Error fetching data:', error);
                 resultContainer.innerHTML = `<h2>Error fetching data</h2>`;
             }
@@ -336,12 +350,13 @@
             event.preventDefault();
             const { device_id, start_date, end_date } = getFormValues(2);
             let aggregation_type = document.getElementById('aggregation_type1').value;
+            let graph_type = document.getElementById('graph_type1').value;
 
             let url = `/api2/get_records_count_aggregated?datasource=${datasource}&start_date=${start_date}&end_date=${end_date}&aggregation_type=${aggregation_type}`;
             if (device_id) url += `&device_id=${device_id}`;
             const resultContainer = document.getElementById('result4');
 
-            await makeTableAndChart(url, 'lineChart1', 'barChart1', 'table1', resultContainer, 'Record Count');
+            await makeTableAndChart(url, 'lineChart1', 'barChart1', 'table1', resultContainer, 'Record Count', graph_type);
         });
 
 

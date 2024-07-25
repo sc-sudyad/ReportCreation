@@ -4,6 +4,7 @@ from typing import List
 from exception_handling.exception import DruidUtilError, KafkaUtilError
 from repo.kafka_util import KafkaUtil
 from repo.druid_util import DruidUtil
+from utils.aggregation import AggregationUtils
 from utils.queries import *
 
 logger = logging.getLogger(__name__)
@@ -47,7 +48,7 @@ class SummaryService:
                 device_id_count = self.druid_util.get_record_count(device_ids_query)
                 logger.info(f"Device ID count for datasource '{datasource}': {device_id_count}")
             except Exception as e:
-                logger.error(f"Error executing SQL query to get device_ids for datasource {datasource}",exc_info=True)
+                logger.error(f"Error executing SQL query to get device_ids for datasource {datasource}", exc_info=True)
                 raise DruidUtilError(f"Error executing SQL query to get device_ids for datasource {datasource}. {e}")
 
             try:
@@ -69,6 +70,58 @@ class SummaryService:
                 max_processing_time = self.druid_util.get_record_count_dict(max_processing_time_query)[0]['res']
                 min_processing_time = self.druid_util.get_record_count_dict(min_processing_time_query)[0]['res']
                 total_record_count = self.druid_util.get_record_count(total_record_count_query)
+
+                results.append({
+                    'datasource': datasource,
+                    'device_id_count': device_id_count,
+                    'mean_processing_time': mean_processing_time,
+                    'max_processing_time': max_processing_time,
+                    'min_processing_time': min_processing_time,
+                    'total_record_count': total_record_count
+                })
+                logger.info(f"Summary for datasource '{datasource}' added to results")
+            except Exception as e:
+                logger.error(f"Error executing SQL query for datasource {datasource}", exc_info=True)
+                raise DruidUtilError(f"Error executing SQL query for datasource {datasource}. {e}")
+        logger.info("Summary for all datasources fetched successfully")
+        return results
+
+    def get_latest_summary_by_interval(self, datasources: List[str], interval_type: str):
+        logger.info(f"Fetching summary for all datasources: {datasources}")
+        results = []
+        interval = AggregationUtils.get_summary_interval(interval_type)
+        for datasource in datasources:
+            logger.info(f"Processing datasource: {datasource}")
+            device_ids_query = SQL_GET_COUNT_ALL_DEVICE_IDS.format(datasource=datasource)
+            try:
+                device_id_count = self.druid_util.get_record_count(device_ids_query)
+                logger.info(f"Device ID count for datasource '{datasource}': {device_id_count}")
+            except Exception as e:
+                logger.error(f"Error executing SQL query to get device_ids for datasource {datasource}", exc_info=True)
+                raise DruidUtilError(f"Error executing SQL query to get device_ids for datasource {datasource}. {e}")
+
+            try:
+                mean_processing_time_query = SQL_GET_PROCESSING_TIME_BY_INTERVAL.format(
+                    datasource=datasource,
+                    metric_interval='AVG',
+                    interval=interval
+                )
+                max_processing_time_query = SQL_GET_PROCESSING_TIME_BY_INTERVAL.format(
+                    datasource=datasource,
+                    metric_interval='MAX',
+                    interval=interval
+                )
+                min_processing_time_query = SQL_GET_PROCESSING_TIME_BY_INTERVAL.format(
+                    datasource=datasource,
+                    metric_interval='MIN',
+                    interval=interval
+                )
+                record_count_query = SQL_GET_RECORDS_COUNT_BY_INTERVAL.format(datasource=datasource, interval=interval)
+
+                mean_processing_time = self.druid_util.get_record_count_dict(mean_processing_time_query)[0]['res']
+                max_processing_time = self.druid_util.get_record_count_dict(max_processing_time_query)[0]['res']
+                min_processing_time = self.druid_util.get_record_count_dict(min_processing_time_query)[0]['res']
+                total_record_count = self.druid_util.get_record_count(record_count_query)
 
                 results.append({
                     'datasource': datasource,

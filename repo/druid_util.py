@@ -3,11 +3,12 @@ import logging
 from typing import List, Dict, Any
 
 import requests
+from requests.auth import HTTPBasicAuth
+
 from config.druid_config import DruidConfig
 from exception_handling.exception import DruidUtilError
 
 logger = logging.getLogger(__name__)
-logging.basicConfig(level=logging.INFO)
 
 
 class DruidUtil:
@@ -15,6 +16,7 @@ class DruidUtil:
         self.druid_url = DruidConfig.DRUID_URL
         self.verify = DruidConfig.VERIFY
         self.cert = DruidConfig.CERT
+        self.auth = HTTPBasicAuth(DruidConfig.USERNAME, DruidConfig.PASSWORD)
 
     def get_record_count(self, sql_query: str) -> int:
         try:
@@ -22,6 +24,7 @@ class DruidUtil:
             session = requests.Session()
             session.verify = self.verify
             session.cert = self.cert
+            session.auth = self.auth
 
             # Send the query to Druid
             response = session.post(f"{self.druid_url}/druid/v2/sql", json={"query": sql_query})
@@ -43,10 +46,11 @@ class DruidUtil:
 
     def get_record_count_dict(self, sql_query: str) -> List[Dict[str, Any]]:
         try:
-            logger.info(f"Executing SQL query :")
+            logger.info(f"Executing SQL query: {sql_query}")
             session = requests.Session()
             session.verify = self.verify
             session.cert = self.cert
+            session.auth = self.auth
 
             # Send the query to Druid
             response = session.post(f"{self.druid_url}/druid/v2/sql", json={"query": sql_query})
@@ -57,8 +61,7 @@ class DruidUtil:
                 logger.info(f"Query successful, retrieved {len(data)} records")
                 return data
             else:
-                logger.error(
-                    f"Failed to execute SQL query: {sql_query}. Status code: {response.status_code}, Response: {response.text}")
+                logger.error(f"Failed to execute SQL query: {sql_query}. Status code: {response.status_code}, Response: {response.text}")
                 raise DruidUtilError("Failed to execute SQL query.")
 
         except Exception as e:

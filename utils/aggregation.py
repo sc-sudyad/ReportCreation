@@ -23,3 +23,18 @@ class AggregationUtils:
             return intervals[metric_type]
         else:
             raise ValueError("Unsupported metric type")
+
+    @staticmethod
+    def get_summary_interval(interval_type):
+        intervals = {
+            'hourly': 'HOUR',
+            'daily': 'DAY',
+            'weekly': 'WEEK',
+            'monthly': 'MONTH',
+            'quaterly': 'QUARTER',
+
+        }
+        if interval_type in intervals:
+            return intervals[interval_type]
+        else:
+            raise ValueError("Unsupported metric type")

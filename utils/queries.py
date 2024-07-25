@@ -6,6 +6,17 @@ FROM "{datasource}" '''
 SQL_GET_COUNT_ALL_DEVICE_IDS = '''SELECT COUNT(DISTINCT deviceID) AS total_count
 FROM "{datasource}" '''
 
+SQL_GET_RECORDS_COUNT_BY_INTERVAL = ''' SELECT COUNT(*) as "total_count"
+FROM "{datasource}"
+WHERE "__time" >= TIMESTAMPADD({interval}, -1, CURRENT_TIMESTAMP) '''
+
+SQL_GET_PROCESSING_TIME_BY_INTERVAL = '''
+    SELECT
+         {metric_interval}((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000) AS res
+    FROM "{datasource}"
+    WHERE "__time" >= TIMESTAMPADD({interval}, -1, CURRENT_TIMESTAMP)
+'''
+
 # -------------------- record_type_queries -----------------------
 SQL_GET_PROCESSED_COUNT_ALL_DEVICE = '''
     SELECT COUNT(*) AS total_count FROM "{datasource}"

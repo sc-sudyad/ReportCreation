@@ -58,16 +58,30 @@
         select {
             padding: 5px;
         }
+
+        #summaryForm label,
+        select {
+            padding: 5px;
+        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
-<body>
+<body data-datasources='{{ datasources | tojson }}'>
     <h1>Device Summary</h1>
+    <form id="summaryForm">
+        <label for="interval">Select Interval:</label>
+        <select name="interval" id="interval" onchange="fetchSummaryData()">
+            <option value="monthly">Monthly</option>
+            <option value="weekly">Weekly</option>
+            <option value="quaterly">Quaterly</option>
+        </select>
+    </form>
+
     <table class="table">
         <thead>
             <tr>
-                <th>Datasources</th>
+                <th>Datasource</th>
                 <th>Device ID Count</th>
                 <th>Mean Processing Time</th>
                 <th>Min Processing Time</th>
@@ -75,18 +89,7 @@
                 <th>Total Record Count</th>
             </tr>
         </thead>
-        <tbody>
-            {% for item in summary %}
-            <tr>
-                <td class="datasource" onclick="fetchDeviceIds('{{ item.datasource }}')">{{ item.datasource }}
-                </td>
-                <td>{{ item.device_id_count }}</td>
-                <td>{{ item.mean_processing_time }}</td>
-                <td>{{ item.min_processing_time }}</td>
-                <td>{{ item.max_processing_time }}</td>
-                <td>{{ item.total_record_count }}</td>
-            </tr>
-            {% endfor %}
+        <tbody id="summaryTableBody">
         </tbody>
     </table>
     <div id="loading">Loading...</div>
@@ -203,6 +206,7 @@
         </div>
     </div>
     <script>
+
         let datasource = '';
         function updateDeviceIdOptions(deviceIds) {
             const deviceIdSelects = document.querySelectorAll('select[name="device_id"]');
@@ -213,27 +217,63 @@
                 });
             });
         }
+        async function fetchSummaryData() {
+            console.log('Fetch Summary Data:');
+            const interval = document.getElementById('interval').value;
+            const datasources = JSON.parse(document.body.getAttribute('data-datasources'));
+            const summaryTableBody = document.getElementById('summaryTableBody');
+            summaryTableBody.innerHTML = ``
+            console.log(datasources);
+            for (const datasource of datasources) {
+                const url = `get_latest_summary_by_interval?datasource=${datasource}&interval_type=${interval}`;
+                try {
+                    const response = await fetch(url);
+                    const data = await response.json();
+                    console.log('Fetched data:', data);
+                    populateSummaryTable(data, summaryTableBody);
+                } catch (error) {
+                    console.error('Error fetching summary data:', error);
+                }
+            }
+        }
+
+        function populateSummaryTable(data, summaryTableBody) {
+            data.forEach(item => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                <td class="datasource" onclick="fetchDeviceIds('${item.datasource}')">${item.datasource}</td>
+                <td>${item.device_id_count}</td>
+                <td>${item.mean_processing_time}</td>
+                <td>${item.min_processing_time}</td>
+                <td>${item.max_processing_time}</td>
+                <td>${item.total_record_count}</td>
+                `;
+                summaryTableBody.appendChild(row);
+            });
+        }
+
         function getFormValues(suffix) {
             let device_id = document.getElementById(`device_id${suffix}`).value;
             let start_date = document.getElementById(`start_date${suffix}`).value;
             let end_date = document.getElementById(`end_date${suffix}`).value;
             return { device_id, start_date, end_date };
         }
+
         async function fetchDeviceIds(value) {
             datasource = value;
-            console.log(datasource);
+            console.log("Selected: ", datasource)
             document.getElementById('loading').style.display = 'block';
 
             document.getElementById('form1').reset();
             document.getElementById('form2').reset();
             document.getElementById('form3').reset();
             document.getElementById('form4').reset();
-            let url = `/api/get_device_id_per_datasource?datasource=${datasource}`;
+            let url = `get_device_id_per_datasource?datasource=${datasource}`;
 
             try {
                 const response = await fetch(url);
                 const data = await response.json();
-                document.getElementById('loading').style.display = 'none';
+                document.getElementById('loading').innerHTML = `Datasource: ${datasource}`;
 
                 if (Array.isArray(data) && data.length > 0) {
                     const deviceIds = data.map(item => ({
@@ -256,7 +296,8 @@
             event.preventDefault();
             const { device_id, start_date, end_date } = getFormValues(1);
 
-            let url = `/api2/get_records_count_date_range?datasource=${datasource}&start_date=${start_date}&end_date=${end_date}`;
+            let url =
+                `get_records_count_date_range?datasource=${datasource}&start_date=${start_date}&end_date=${end_date}`;
             if (device_id) url += `&device_id=${device_id}`;
             const resultContainer = document.getElementById('result1');
             try {
@@ -274,22 +315,35 @@
             }
         });
         let chartInstance = null;
-        async function makeTableAndChart(url, lineChartId, barChartId, tableId, resultContainer, recordType, graph_type) {
+        function normalizeData(data) {
+            const min = Math.min(...data);
+            const max = Math.max(...data);
+            return data.map(value => (value - min) / (max - min));
+        }
+        async function makeTableAndChart(url, lineChartId, barChartId, tableId, resultContainer, recordType,
+            graph_type) {
+            console.log(url, lineChartId, barChartId, tableId, recordType, graph_type);
             try {
                 const response = await fetch(url);
                 const data = await response.json();
+
                 if (Array.isArray(data) && data.length > 0) {
                     const labels = data.map(row => new Date(row.__time).toLocaleString());
-                    const values = data.map(row => row.res);
+                    let values = data.map(row => row.res);
 
-                    // Destroy existing part
-                    if (chartInstance) chartInstance.destroy();
+                    values = normalizeData(values);
 
+                    // Destroy existing chart instance if it exists
+                    if (chartInstance) {
+                        chartInstance.destroy();
+                    }
+                    console.log("Normalised...")
                     const lineChart = document.getElementById(lineChartId);
                     const barChart = document.getElementById(barChartId);
 
                     const table = document.getElementById(tableId);
 
+                    console.log("Inside....")
                     let result = `<table border="1">
                             <tr>
                                 <th>Time</th>
@@ -325,9 +379,11 @@
                         }
                     };
                     if (graph_type == 'line') {
+                        barChart.style.display = 'none';
                         lineChart.style.display = 'block';
                         chartInstance = new Chart(lineChart, chartConfig);
                     } else {
+                        lineChart.style.display = 'none';
                         barChart.style.display = 'block';
                         chartInstance = new Chart(barChart, chartConfig);
                     }
@@ -347,12 +403,13 @@
         }
 
         document.getElementById('form2').addEventListener('submit', async (event) => {
+            console.log("Form2")
             event.preventDefault();
             const { device_id, start_date, end_date } = getFormValues(2);
             let aggregation_type = document.getElementById('aggregation_type1').value;
             let graph_type = document.getElementById('graph_type1').value;
 
-            let url = `/api2/get_records_count_aggregated?datasource=${datasource}&start_date=${start_date}&end_date=${end_date}&aggregation_type=${aggregation_type}`;
+            let url = `get_records_count_aggregated?datasource=${datasource}&start_date=${start_date}&end_date=${end_date}&aggregation_type=${aggregation_type}`;
             if (device_id) url += `&device_id=${device_id}`;
             const resultContainer = document.getElementById('result4');
 
@@ -365,7 +422,7 @@
             const { device_id, start_date, end_date } = getFormValues(3);
             let metric_type = document.getElementById('metric_type1').value;
 
-            let url = `/api3/get_processing_time_date_range?datasource=${datasource}&start_date=${start_date}&end_date=${end_date}&metric_type=${metric_type}`;
+            let url = `get_processing_time_date_range?datasource=${datasource}&start_date=${start_date}&end_date=${end_date}&metric_type=${metric_type}`;
             if (device_id) url += `&device_id=${device_id}`;
             const resultContainer = document.getElementById('result3');
             try {
@@ -383,20 +440,19 @@
                 resultContainer.innerHTML = `<h2>Error fetching data</h2>`;
             }
         });
-
         document.getElementById('form4').addEventListener('submit', async function (event) {
             event.preventDefault();
             const { device_id, start_date, end_date } = getFormValues(4);
             let aggregation_type = document.getElementById('aggregation_type2').value;
             let metric_type = document.getElementById('metric_type2').value;
+            let graph_type = document.getElementById('graph_type2').value;
 
-            let url = `/api3/get_processing_time_aggregated?datasource=${datasource}&start_date=${start_date}&end_date=${end_date}&aggregation_type=${aggregation_type}&metric_type=${metric_type}`;
+            let url = `get_processing_time_aggregated?datasource=${datasource}&start_date=${start_date}&end_date=${end_date}&aggregation_type=${aggregation_type}&metric_type=${metric_type}`;
             if (device_id) url += `&device_id=${device_id}`;
             const resultContainer = document.getElementById('result4');
-
-            await makeTableAndChart(url, 'lineChart2', 'barChart2', 'table2', resultContainer, 'Processing Time');
-
+            await makeTableAndChart(url, 'lineChart2', 'barChart2', 'table2', resultContainer, 'Processing Time', graph_type);
         });
+        document.addEventListener('DOMContentLoaded', fetchSummaryData);
     </script>
 </body>
 

@@ -7,7 +7,6 @@ from config.kafka_config import KafkaConfig
 from exception_handling.exception import KafkaUtilError
 
 logger = logging.getLogger(__name__)
-logging.basicConfig(level=logging.INFO)
 
 
 class KafkaUtil:

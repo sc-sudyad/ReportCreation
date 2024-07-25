@@ -8,7 +8,6 @@ from utils.queries import *
 from utils.aggregation import AggregationUtils
 
 logger = logging.getLogger(__name__)
-logging.basicConfig(level=logging.INFO)
 
 
 class RecordsService:

@@ -1,4 +1,5 @@
-from config.logging_config import setup_logging
+
+
 import logging
 from typing import Optional, List
 
@@ -14,8 +15,7 @@ from services.processing_time_service import ProcessingTimeService
 from exception_handling.exception import DruidUtilError, KafkaUtilError
 from exception_handling.invalid_date_format import InvalidDateFormatError
 
-logger = logging.getLogger(__name__)
-setup_logging()
+from config.logging_config import logger
 
 app = FastAPI()
 
@@ -42,33 +42,33 @@ async def get_processing_stats(input_topic: str, output_topic: str, device_type:
                                device_id: Optional[str] = None):
     logger.info(f"Received request for /get_processing_stats")
     try:
-        return summary_service.get_processing_stats(input_topic, output_topic, device_type, device_id)
+        result = await summary_service.get_processing_stats(input_topic, output_topic, device_type, device_id)
+        return result
     except KafkaUtilError as e:
         logger.error(f"KafkaUtilError occurred: {e}")
-        raise HTTPException(
-            status_code=500, detail=f"KafkaUtilError occurred: {e}")
+        raise HTTPException(status_code=500, detail=f"KafkaUtilError occurred: {e}")
     except Exception as e:
         logger.error(f"Internal Server Error: {e}")
-        raise HTTPException(
-            status_code=500, detail=f"Internal Server Error: {e}")
+        raise HTTPException(status_code=500, detail=f"Internal Server Error: {e}")
 
 
 @app.get("/get_summary_all_datasource", status_code=status.HTTP_200_OK)
 async def get_summary_all_datasource(datasource_query: List[str] = Query(...)):
     logger.info(f"Received request for /get_summary_all_datasource")
     try:
-        return summary_service.get_summary_all_datasource(datasource_query)
+        response = await summary_service.get_summary_all_datasource(datasource_query)
+        return response
     except Exception as e:
         logger.error(f"Internal Server Error: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 
 @app.get("/get_latest_summary_by_interval", status_code=status.HTTP_200_OK)
-async def get_latest_summary_by_interval(
-        datasource: List[str] = Query(...), interval_type: str = Query()):
+async def get_latest_summary_by_interval(datasource: List[str] = Query(...), interval_type: str = Query()):
     logger.info(f"Received request for /get_latest_summary_by_interval")
     try:
-        return summary_service.get_latest_summary_by_interval(datasource, interval_type)
+        response = await summary_service.get_latest_summary_by_interval(datasource, interval_type)
+        return response
     except Exception as e:
         logger.error(f"Internal Server Error: {e}")
         raise HTTPException(status_code=500, detail=str(e))
@@ -78,7 +78,8 @@ async def get_latest_summary_by_interval(
 async def get_device_id_per_datasource(datasource: str):
     logger.info(f"Received request for /get_device_id_per_datasource")
     try:
-        return summary_service.get_device_id_per_datasource(datasource)
+        response = await summary_service.get_device_id_per_datasource(datasource)
+        return response
     except Exception as e:
         logger.error(f"Internal Server Error: {e}")
         raise HTTPException(status_code=500, detail=str(e))
@@ -91,18 +92,20 @@ async def get_records_count_date_range(datasource: str, start_date: str, end_dat
                                        device_id: Optional[str] = None):
     logger.info(f"Received request for /get_records_count_date_range")
     try:
-        count = records_service.get_records_count_date_range(datasource, device_id, start_date, end_date)
-        return [{"count": count}]
+        response = await records_service.get_records_count_date_range(datasource, device_id, start_date, end_date)
+        return response
     except InvalidDateFormatError as e:
         logger.error(f"Invalid date format: {e}")
         raise HTTPException(
             status_code=400, detail=f"Invalid date format: {e}")
     except DruidUtilError as e:
         logger.error(f"Error fetching data from Druid: {e}")
-        raise HTTPException(status_code=500, detail=f"Error fetching data from Druid. {e}")
+        raise HTTPException(
+            status_code=500, detail=f"Error fetching data from Druid. {e}")
     except Exception as e:
         logger.error(f"Internal Server Error: {e}")
-        raise HTTPException(status_code=500, detail=f"Internal Server Error {e}")
+        raise HTTPException(
+            status_code=500, detail=f"Internal Server Error {e}")
 
 
 @app.get("/get_records_count_aggregated", status_code=status.HTTP_200_OK)
@@ -110,16 +113,20 @@ async def get_records_count_aggregated(datasource: str, start_date: str, end_dat
                                        device_id: Optional[str] = None):
     logger.info(f"Received request for /get_records_count_aggregated")
     try:
-        return records_service.get_records_count_aggregated(datasource, device_id, start_date, end_date,aggregation_type)
+        result = await records_service.get_records_count_aggregated(datasource, device_id, start_date, end_date, aggregation_type)
+        return result
     except InvalidDateFormatError as e:
         logger.error(f"Invalid date format: {e}")
-        raise HTTPException(status_code=400, detail=f"Invalid date format: {e}")
+        raise HTTPException(
+            status_code=400, detail=f"Invalid date format: {e}")
     except DruidUtilError as e:
         logger.error(f"Error fetching data from Druid: {e}")
-        raise HTTPException(status_code=500, detail=f"Error fetching data from Druid. {e}")
+        raise HTTPException(
+            status_code=500, detail=f"Error fetching data from Druid. {e}")
     except Exception as e:
         logger.error(f"Internal Server Error: {e}")
-        raise HTTPException(status_code=500, detail=f"Internal Server Error {e}")
+        raise HTTPException(
+            status_code=500, detail=f"Internal Server Error {e}")
 
 
 # Processing time-related endpoints
@@ -128,8 +135,8 @@ async def get_processing_time_date_range(datasource: str, start_date: str, end_d
                                          device_id: Optional[str] = None):
     logger.info(f"Received request for /get_processing_time_date_range")
     try:
-        return processing_service.get_processing_time_data_range(datasource, device_id, start_date, end_date,
-                                                                 metric_type)
+        response = await processing_service.get_processing_time_data_range(datasource, device_id, start_date, end_date, metric_type)
+        return response
     except InvalidDateFormatError as e:
         logger.error(f"Invalid date format: {e}")
         raise HTTPException(
@@ -149,20 +156,23 @@ async def get_processing_time_aggregated(datasource: str, start_date: str, end_d
                                          metric_type: str, device_id: Optional[str] = None):
     logger.info(f"Received request for /get_processing_time_aggregated")
     try:
-        return processing_service.get_processing_time_aggregated(datasource, device_id, start_date, end_date,
-                                                                 aggregation_type, metric_type)
+        response = await processing_service.get_processing_time_aggregated(datasource, device_id, start_date, end_date, aggregation_type, metric_type)
+        return response
     except InvalidDateFormatError as e:
         logger.error(f"Invalid date format: {e}")
-        raise HTTPException(status_code=400, detail=f"Invalid date format: {e}")
+        raise HTTPException(
+            status_code=400, detail=f"Invalid date format: {e}")
     except DruidUtilError as e:
         logger.error(f"Error fetching data from Druid: {e}")
-        raise HTTPException(status_code=500, detail=f"Error fetching data from Druid. {e}")
+        raise HTTPException(
+            status_code=500, detail=f"Error fetching data from Druid. {e}")
     except Exception as e:
         logger.error(f"Internal Server Error: {e}")
-        raise HTTPException(status_code=500, detail=f"Internal Server Error {e}")
+        raise HTTPException(
+            status_code=500, detail=f"Internal Server Error {e}")
 
 
-datasources = ["updates-data6", "kafka-connection-test10"]
+datasources = ["updates-data6", "kafka-connection-test15"]
 
 
 # Define root endpoint

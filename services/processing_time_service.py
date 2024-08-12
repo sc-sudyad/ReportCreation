@@ -1,5 +1,7 @@
+import asyncio
 import logging
-from datetime import datetime
+from concurrent.futures import ThreadPoolExecutor
+
 
 from exception_handling.exception import DruidUtilError
 from exception_handling.invalid_date_format import InvalidDateFormatError
@@ -8,15 +10,17 @@ from utils.convert_date import DateConverter
 from repo.druid_util import DruidUtil
 from utils.queries import *
 
-logger = logging.getLogger(__name__)
+from config.logging_config import logger
 
 
 class ProcessingTimeService:
     def __init__(self):
         self.druid_util = DruidUtil()
+        self.executor = ThreadPoolExecutor(max_workers=10)
 
-    def get_processing_time_data_range(self, datasource: str, device_id: str, start_date: str,
+    async def get_processing_time_data_range(self, datasource: str, device_id: str, start_date: str,
                                        end_date: str, metric_type: str):
+
         try:
             metric_interval = AggregationUtils.get_metric_interval(metric_type)
             logger.info(f"Metric interval selected: {metric_interval}")
@@ -50,15 +54,17 @@ class ProcessingTimeService:
             )
 
         try:
-            result = self.druid_util.get_record_count_dict(sql_query)
+            result = await asyncio.get_event_loop().run_in_executor(
+                self.executor, self.druid_util.get_record_count_dict, sql_query
+            )
             logger.info(f"Query executed successfully, result: {result}")
-            return result
+            return {'processing_time': result[0]['res']}
         except Exception as e:
             logger.error(f"Error executing SQL query: {sql_query}, Error: {e}")
             raise DruidUtilError(f"Error executing SQL query: {e}")
 
-    def get_processing_time_aggregated(self, datasource: str, device_id: str, start_date: str,
-                                       end_date: str, aggregation_type: str, metric_type: str):
+    async def get_processing_time_aggregated(self, datasource: str, device_id: str, start_date: str,
+                                             end_date: str, aggregation_type: str, metric_type: str):
         try:
             aggregation_interval = AggregationUtils.get_aggregation_interval(aggregation_type)
             logger.info(f"Aggregation interval selected: {aggregation_interval}")
@@ -101,7 +107,9 @@ class ProcessingTimeService:
             )
 
         try:
-            result = self.druid_util.get_record_count_dict(sql_query)
+            result = await asyncio.get_event_loop().run_in_executor(
+                self.executor, self.druid_util.get_record_count_dict, sql_query
+            )
             logger.info(f"Query executed successfully, result: {result}")
             return result
         except Exception as e:

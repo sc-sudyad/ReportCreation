@@ -1,0 +1,46 @@
+2024-08-12T12:14:22.008162+0530 - __main__ - INFO - Received request for /get_latest_summary_by_interval
+2024-08-12T12:14:22.009173+0530 - services.summary_service - INFO - Fetching summary for all datasources: ['kafka-connection-test15']
+2024-08-12T12:14:22.009173+0530 - services.summary_service - INFO - Processing datasource: kafka-connection-test15
+2024-08-12T12:14:22.011172+0530 - repo.druid_util - INFO - Executing SQL query: SELECT COUNT(DISTINCT deviceID) AS total_count
+FROM "kafka-connection-test15" 
+2024-08-12T12:14:22.705970+0530 - repo.druid_util - ERROR - Failed to execute SQL query: SELECT COUNT(DISTINCT deviceID) AS total_count
+FROM "kafka-connection-test15" . Status code: 400, Response: {"error":"Plan validation failed","errorMessage":"org.apache.calcite.runtime.CalciteContextException: From line 2, column 6 to line 2, column 30: Object 'kafka-connection-test15' not found","errorClass":"org.apache.calcite.tools.ValidationException","host":null}
+2024-08-12T12:14:22.705970+0530 - repo.druid_util - ERROR - Error executing SQL query: SELECT COUNT(DISTINCT deviceID) AS total_count
+FROM "kafka-connection-test15" 
+2024-08-12T12:14:22.705970+0530 - services.summary_service - ERROR - Error executing SQL query to get device_ids for datasource kafka-connection-test15
+2024-08-12T12:14:22.707222+0530 - __main__ - ERROR - Internal Server Error: Error executing SQL query to get device_ids for datasource kafka-connection-test15. Error executing SQL query: SELECT COUNT(DISTINCT deviceID) AS total_count
+FROM "kafka-connection-test15" . Failed to execute SQL query.
+2024-08-12T12:17:15.231858+0530 - __main__ - INFO - Received request for /get_latest_summary_by_interval
+2024-08-12T12:17:15.232870+0530 - services.summary_service - INFO - Fetching summary for all datasources: ['kafka-connection-test9']
+2024-08-12T12:17:15.232870+0530 - services.summary_service - INFO - Processing datasource: kafka-connection-test9
+2024-08-12T12:17:15.233869+0530 - repo.druid_util - INFO - Executing SQL query: SELECT COUNT(DISTINCT deviceID) AS total_count
+FROM "kafka-connection-test9" 
+2024-08-12T12:17:16.458756+0530 - repo.druid_util - INFO - Query successful, total_count: 5
+2024-08-12T12:17:16.459757+0530 - services.summary_service - INFO - Device ID count for datasource 'kafka-connection-test9': 5
+2024-08-12T12:17:16.461178+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         AVG((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000) AS res
+    FROM "kafka-connection-test9"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-08-12T12:17:17.573473+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-08-12T12:17:17.574472+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MAX((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000) AS res
+    FROM "kafka-connection-test9"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-08-12T12:17:19.113301+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-08-12T12:17:19.145964+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MIN((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000) AS res
+    FROM "kafka-connection-test9"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-08-12T12:17:20.053559+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-08-12T12:17:20.054568+0530 - repo.druid_util - INFO - Executing SQL query:  SELECT COUNT(*) as "total_count"
+FROM "kafka-connection-test9"
+WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP) 
+2024-08-12T12:17:20.785232+0530 - repo.druid_util - INFO - Query successful, total_count: 55944
+2024-08-12T12:17:20.786240+0530 - services.summary_service - INFO - Summary for datasource 'kafka-connection-test9' added to results
+2024-08-12T12:17:20.787238+0530 - services.summary_service - INFO - Summary for all datasources fetched successfully

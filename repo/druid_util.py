@@ -1,6 +1,4 @@
 # repo/druid_util.py
-import logging
-from typing import List, Dict, Any
 
 import requests
 from requests.auth import HTTPBasicAuth
@@ -8,7 +6,7 @@ from requests.auth import HTTPBasicAuth
 from config.druid_config import DruidConfig
 from exception_handling.exception import DruidUtilError
 
-logger = logging.getLogger(__name__)
+from config.logging_config import logger
 
 
 class DruidUtil:
@@ -44,7 +42,7 @@ class DruidUtil:
             logger.error(f"Error executing SQL query: {sql_query}", exc_info=True)
             raise DruidUtilError(f"Error executing SQL query: {sql_query}. {e}")
 
-    def get_record_count_dict(self, sql_query: str) -> List[Dict[str, Any]]:
+    def get_record_count_dict(self, sql_query: str):
         try:
             logger.info(f"Executing SQL query: {sql_query}")
             session = requests.Session()

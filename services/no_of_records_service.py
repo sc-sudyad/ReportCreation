@@ -1,4 +1,6 @@
+import asyncio
 import logging
+from concurrent.futures import ThreadPoolExecutor
 
 from exception_handling.exception import DruidUtilError
 from exception_handling.invalid_date_format import InvalidDateFormatError
@@ -7,14 +9,16 @@ from utils.convert_date import DateConverter
 from utils.queries import *
 from utils.aggregation import AggregationUtils
 
-logger = logging.getLogger(__name__)
+from config.logging_config import logger
 
 
 class RecordsService:
     def __init__(self):
         self.druid_util = DruidUtil()
+        self.executor = ThreadPoolExecutor(max_workers=10)
 
-    def get_records_count_date_range(self, datasource: str, device_id: str, start_date: str, end_date: str) -> int:
+    async def get_records_count_date_range(self, datasource: str, device_id: str, start_date: str,
+                                           end_date: str):
         try:
             start_date, end_date = DateConverter.convert_to_required_format_for_date_range(
                 start_date, end_date)
@@ -38,25 +42,26 @@ class RecordsService:
             )
 
         try:
-            logger.info(f"Executing SQL query:")
-            return self.druid_util.get_record_count(sql_query)
+            count = await asyncio.get_event_loop().run_in_executor(
+                self.executor, self.druid_util.get_record_count, sql_query
+            )
+            response = {'count': count}
+            return response
         except Exception as e:
             logger.error(f"Error executing SQL query: {sql_query}", exc_info=True)
             raise DruidUtilError(f"Error executing SQL query: {sql_query}. Error: {e}")
 
-    def get_records_count_aggregated(self, datasource: str, device_id: str, start_date: str, end_date: str,
-                                     aggregation_type: str):
+    async def get_records_count_aggregated(self, datasource: str, device_id: str, start_date: str, end_date: str,
+                                           aggregation_type: str):
         try:
-            aggregation_interval = AggregationUtils.get_aggregation_interval(
-                aggregation_type)
+            aggregation_interval = AggregationUtils.get_aggregation_interval(aggregation_type)
             logger.info(f"Aggregation interval selected: {aggregation_interval}")
         except ValueError as e:
             logger.error(f"ValueError occurred: {e}", exc_info=True)
             raise ValueError(f"Invalid aggregation type: {aggregation_type}")
 
         try:
-            start_date, end_date = DateConverter.convert_to_required_format_for_date_range(
-                start_date, end_date)
+            start_date, end_date = DateConverter.convert_to_required_format_for_date_range(start_date, end_date)
             logger.info(f"Dates converted to required format: {start_date} to {end_date}")
         except InvalidDateFormatError as e:
             logger.error(f"Invalid date format: {start_date}, {end_date}")
@@ -79,8 +84,10 @@ class RecordsService:
             )
 
         try:
-            logger.info(f"Executing SQL query:")
-            return self.druid_util.get_record_count_dict(sql_query)
+            response = await asyncio.get_event_loop().run_in_executor(
+                self.executor, self.druid_util.get_record_count_dict, sql_query
+            )
+            return response
         except Exception as e:
             logger.error(f"Error executing SQL query: {sql_query}, Error: {e}")
             raise DruidUtilError(f"Error executing SQL query: {e}")

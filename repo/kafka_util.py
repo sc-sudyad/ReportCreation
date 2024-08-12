@@ -6,7 +6,7 @@ from confluent_kafka import Consumer
 from config.kafka_config import KafkaConfig
 from exception_handling.exception import KafkaUtilError
 
-logger = logging.getLogger(__name__)
+from config.logging_config import logger
 
 
 class KafkaUtil:

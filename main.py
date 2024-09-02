@@ -1,6 +1,3 @@
-
-
-import logging
 from typing import Optional, List
 
 from fastapi import FastAPI, Request, HTTPException, status, Query
@@ -113,7 +110,8 @@ async def get_records_count_aggregated(datasource: str, start_date: str, end_dat
                                        device_id: Optional[str] = None):
     logger.info(f"Received request for /get_records_count_aggregated")
     try:
-        result = await records_service.get_records_count_aggregated(datasource, device_id, start_date, end_date, aggregation_type)
+        result = await records_service.get_records_count_aggregated(datasource, device_id, start_date, end_date,
+                                                                    aggregation_type)
         return result
     except InvalidDateFormatError as e:
         logger.error(f"Invalid date format: {e}")
@@ -135,7 +133,8 @@ async def get_processing_time_date_range(datasource: str, start_date: str, end_d
                                          device_id: Optional[str] = None):
     logger.info(f"Received request for /get_processing_time_date_range")
     try:
-        response = await processing_service.get_processing_time_data_range(datasource, device_id, start_date, end_date, metric_type)
+        response = await processing_service.get_processing_time_data_range(datasource, device_id, start_date, end_date,
+                                                                           metric_type)
         return response
     except InvalidDateFormatError as e:
         logger.error(f"Invalid date format: {e}")
@@ -156,7 +155,8 @@ async def get_processing_time_aggregated(datasource: str, start_date: str, end_d
                                          metric_type: str, device_id: Optional[str] = None):
     logger.info(f"Received request for /get_processing_time_aggregated")
     try:
-        response = await processing_service.get_processing_time_aggregated(datasource, device_id, start_date, end_date, aggregation_type, metric_type)
+        response = await processing_service.get_processing_time_aggregated(datasource, device_id, start_date, end_date,
+                                                                           aggregation_type, metric_type)
         return response
     except InvalidDateFormatError as e:
         logger.error(f"Invalid date format: {e}")
@@ -172,7 +172,9 @@ async def get_processing_time_aggregated(datasource: str, start_date: str, end_d
             status_code=500, detail=f"Internal Server Error {e}")
 
 
-datasources = ["updates-data6", "kafka-connection-test15"]
+datasources = ["loadtest_cooling2", "loadtest_hydrus2_2", "loadtest_hydrus_new", "loadtest_duba2", "loadtest_pump2",
+               "loadtest_flow2", "loadtest_energyprofile2", "loadtest_sharmaopcua2", "loadtest_wrecycle2",
+               "loadtest_sharmaopcua2"]
 
 
 # Define root endpoint

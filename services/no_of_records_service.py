@@ -19,6 +19,7 @@ class RecordsService:
 
     async def get_records_count_date_range(self, datasource: str, device_id: str, start_date: str,
                                            end_date: str):
+        print("Inside Service..")
         try:
             start_date, end_date = DateConverter.convert_to_required_format_for_date_range(
                 start_date, end_date)

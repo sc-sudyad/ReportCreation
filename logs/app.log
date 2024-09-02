@@ -1,46 +1,1472 @@
-2024-08-12T12:14:22.008162+0530 - __main__ - INFO - Received request for /get_latest_summary_by_interval
-2024-08-12T12:14:22.009173+0530 - services.summary_service - INFO - Fetching summary for all datasources: ['kafka-connection-test15']
-2024-08-12T12:14:22.009173+0530 - services.summary_service - INFO - Processing datasource: kafka-connection-test15
-2024-08-12T12:14:22.011172+0530 - repo.druid_util - INFO - Executing SQL query: SELECT COUNT(DISTINCT deviceID) AS total_count
-FROM "kafka-connection-test15" 
-2024-08-12T12:14:22.705970+0530 - repo.druid_util - ERROR - Failed to execute SQL query: SELECT COUNT(DISTINCT deviceID) AS total_count
-FROM "kafka-connection-test15" . Status code: 400, Response: {"error":"Plan validation failed","errorMessage":"org.apache.calcite.runtime.CalciteContextException: From line 2, column 6 to line 2, column 30: Object 'kafka-connection-test15' not found","errorClass":"org.apache.calcite.tools.ValidationException","host":null}
-2024-08-12T12:14:22.705970+0530 - repo.druid_util - ERROR - Error executing SQL query: SELECT COUNT(DISTINCT deviceID) AS total_count
-FROM "kafka-connection-test15" 
-2024-08-12T12:14:22.705970+0530 - services.summary_service - ERROR - Error executing SQL query to get device_ids for datasource kafka-connection-test15
-2024-08-12T12:14:22.707222+0530 - __main__ - ERROR - Internal Server Error: Error executing SQL query to get device_ids for datasource kafka-connection-test15. Error executing SQL query: SELECT COUNT(DISTINCT deviceID) AS total_count
-FROM "kafka-connection-test15" . Failed to execute SQL query.
-2024-08-12T12:17:15.231858+0530 - __main__ - INFO - Received request for /get_latest_summary_by_interval
-2024-08-12T12:17:15.232870+0530 - services.summary_service - INFO - Fetching summary for all datasources: ['kafka-connection-test9']
-2024-08-12T12:17:15.232870+0530 - services.summary_service - INFO - Processing datasource: kafka-connection-test9
-2024-08-12T12:17:15.233869+0530 - repo.druid_util - INFO - Executing SQL query: SELECT COUNT(DISTINCT deviceID) AS total_count
-FROM "kafka-connection-test9" 
-2024-08-12T12:17:16.458756+0530 - repo.druid_util - INFO - Query successful, total_count: 5
-2024-08-12T12:17:16.459757+0530 - services.summary_service - INFO - Device ID count for datasource 'kafka-connection-test9': 5
-2024-08-12T12:17:16.461178+0530 - repo.druid_util - INFO - Executing SQL query: 
+2024-09-02T14:32:40.818573+0530 - __main__ - INFO - Received request for /get_latest_summary_by_interval
+2024-09-02T14:32:40.819933+0530 - services.summary_service - INFO - Fetching summary for all datasources: ['loadtesting_cooling2']
+2024-09-02T14:32:40.819933+0530 - services.summary_service - INFO - Processing datasource: loadtesting_cooling2
+2024-09-02T14:32:40.822950+0530 - repo.druid_util - INFO - Executing SQL query: SELECT COUNT(DISTINCT deviceID) AS total_count
+FROM "loadtesting_cooling2" 
+2024-09-02T14:32:41.637876+0530 - repo.druid_util - ERROR - Failed to execute SQL query: SELECT COUNT(DISTINCT deviceID) AS total_count
+FROM "loadtesting_cooling2" . Status code: 400, Response: {"error":"Plan validation failed","errorMessage":"org.apache.calcite.runtime.CalciteContextException: From line 2, column 6 to line 2, column 27: Object 'loadtesting_cooling2' not found","errorClass":"org.apache.calcite.tools.ValidationException","host":null}
+2024-09-02T14:32:41.637876+0530 - repo.druid_util - ERROR - Error executing SQL query: SELECT COUNT(DISTINCT deviceID) AS total_count
+FROM "loadtesting_cooling2" 
+2024-09-02T14:32:41.638875+0530 - services.summary_service - ERROR - Error executing SQL query to get device_ids for datasource loadtesting_cooling2
+2024-09-02T14:32:41.638875+0530 - __main__ - ERROR - Internal Server Error: Error executing SQL query to get device_ids for datasource loadtesting_cooling2. Error executing SQL query: SELECT COUNT(DISTINCT deviceID) AS total_count
+FROM "loadtesting_cooling2" . Failed to execute SQL query.
+2024-09-02T14:32:41.641876+0530 - __main__ - INFO - Received request for /get_latest_summary_by_interval
+2024-09-02T14:32:41.641876+0530 - services.summary_service - INFO - Fetching summary for all datasources: ['loadtesting_cooling2']
+2024-09-02T14:32:41.642876+0530 - services.summary_service - INFO - Processing datasource: loadtesting_cooling2
+2024-09-02T14:32:41.642876+0530 - repo.druid_util - INFO - Executing SQL query: SELECT COUNT(DISTINCT deviceID) AS total_count
+FROM "loadtesting_cooling2" 
+2024-09-02T14:32:41.644876+0530 - __main__ - INFO - Received request for /get_latest_summary_by_interval
+2024-09-02T14:32:41.644876+0530 - services.summary_service - INFO - Fetching summary for all datasources: ['loadtesting_hydrus2_2']
+2024-09-02T14:32:41.649875+0530 - services.summary_service - INFO - Processing datasource: loadtesting_hydrus2_2
+2024-09-02T14:32:41.650884+0530 - repo.druid_util - INFO - Executing SQL query: SELECT COUNT(DISTINCT deviceID) AS total_count
+FROM "loadtesting_hydrus2_2" 
+2024-09-02T14:32:42.352404+0530 - repo.druid_util - ERROR - Failed to execute SQL query: SELECT COUNT(DISTINCT deviceID) AS total_count
+FROM "loadtesting_hydrus2_2" . Status code: 400, Response: {"error":"Plan validation failed","errorMessage":"org.apache.calcite.runtime.CalciteContextException: From line 2, column 6 to line 2, column 28: Object 'loadtesting_hydrus2_2' not found","errorClass":"org.apache.calcite.tools.ValidationException","host":null}
+2024-09-02T14:32:42.353401+0530 - repo.druid_util - ERROR - Failed to execute SQL query: SELECT COUNT(DISTINCT deviceID) AS total_count
+FROM "loadtesting_cooling2" . Status code: 400, Response: {"error":"Plan validation failed","errorMessage":"org.apache.calcite.runtime.CalciteContextException: From line 2, column 6 to line 2, column 27: Object 'loadtesting_cooling2' not found","errorClass":"org.apache.calcite.tools.ValidationException","host":null}
+2024-09-02T14:32:42.354409+0530 - repo.druid_util - ERROR - Error executing SQL query: SELECT COUNT(DISTINCT deviceID) AS total_count
+FROM "loadtesting_hydrus2_2" 
+2024-09-02T14:32:42.355397+0530 - repo.druid_util - ERROR - Error executing SQL query: SELECT COUNT(DISTINCT deviceID) AS total_count
+FROM "loadtesting_cooling2" 
+2024-09-02T14:32:42.357740+0530 - services.summary_service - ERROR - Error executing SQL query to get device_ids for datasource loadtesting_hydrus2_2
+2024-09-02T14:32:42.358738+0530 - __main__ - ERROR - Internal Server Error: Error executing SQL query to get device_ids for datasource loadtesting_hydrus2_2. Error executing SQL query: SELECT COUNT(DISTINCT deviceID) AS total_count
+FROM "loadtesting_hydrus2_2" . Failed to execute SQL query.
+2024-09-02T14:32:42.361738+0530 - services.summary_service - ERROR - Error executing SQL query to get device_ids for datasource loadtesting_cooling2
+2024-09-02T14:32:42.362734+0530 - __main__ - ERROR - Internal Server Error: Error executing SQL query to get device_ids for datasource loadtesting_cooling2. Error executing SQL query: SELECT COUNT(DISTINCT deviceID) AS total_count
+FROM "loadtesting_cooling2" . Failed to execute SQL query.
+2024-09-02T14:32:42.371982+0530 - __main__ - INFO - Received request for /get_latest_summary_by_interval
+2024-09-02T14:32:42.372976+0530 - services.summary_service - INFO - Fetching summary for all datasources: ['loadtesting_hydrus2_2']
+2024-09-02T14:32:42.372976+0530 - services.summary_service - INFO - Processing datasource: loadtesting_hydrus2_2
+2024-09-02T14:32:42.372976+0530 - repo.druid_util - INFO - Executing SQL query: SELECT COUNT(DISTINCT deviceID) AS total_count
+FROM "loadtesting_hydrus2_2" 
+2024-09-02T14:32:43.233371+0530 - repo.druid_util - ERROR - Failed to execute SQL query: SELECT COUNT(DISTINCT deviceID) AS total_count
+FROM "loadtesting_hydrus2_2" . Status code: 400, Response: {"error":"Plan validation failed","errorMessage":"org.apache.calcite.runtime.CalciteContextException: From line 2, column 6 to line 2, column 28: Object 'loadtesting_hydrus2_2' not found","errorClass":"org.apache.calcite.tools.ValidationException","host":null}
+2024-09-02T14:32:43.233371+0530 - repo.druid_util - ERROR - Error executing SQL query: SELECT COUNT(DISTINCT deviceID) AS total_count
+FROM "loadtesting_hydrus2_2" 
+2024-09-02T14:32:43.234376+0530 - services.summary_service - ERROR - Error executing SQL query to get device_ids for datasource loadtesting_hydrus2_2
+2024-09-02T14:32:43.234376+0530 - __main__ - ERROR - Internal Server Error: Error executing SQL query to get device_ids for datasource loadtesting_hydrus2_2. Error executing SQL query: SELECT COUNT(DISTINCT deviceID) AS total_count
+FROM "loadtesting_hydrus2_2" . Failed to execute SQL query.
+2024-09-02T14:33:14.516450+0530 - __main__ - INFO - Received request for /get_latest_summary_by_interval
+2024-09-02T14:33:14.517997+0530 - services.summary_service - INFO - Fetching summary for all datasources: ['loadtesting_cooling2']
+2024-09-02T14:33:14.517997+0530 - services.summary_service - INFO - Processing datasource: loadtesting_cooling2
+2024-09-02T14:33:14.519441+0530 - repo.druid_util - INFO - Executing SQL query: SELECT COUNT(DISTINCT deviceID) AS total_count
+FROM "loadtesting_cooling2" 
+2024-09-02T14:33:15.142997+0530 - repo.druid_util - ERROR - Failed to execute SQL query: SELECT COUNT(DISTINCT deviceID) AS total_count
+FROM "loadtesting_cooling2" . Status code: 400, Response: {"error":"Plan validation failed","errorMessage":"org.apache.calcite.runtime.CalciteContextException: From line 2, column 6 to line 2, column 27: Object 'loadtesting_cooling2' not found","errorClass":"org.apache.calcite.tools.ValidationException","host":null}
+2024-09-02T14:33:15.144007+0530 - repo.druid_util - ERROR - Error executing SQL query: SELECT COUNT(DISTINCT deviceID) AS total_count
+FROM "loadtesting_cooling2" 
+2024-09-02T14:33:15.145027+0530 - services.summary_service - ERROR - Error executing SQL query to get device_ids for datasource loadtesting_cooling2
+2024-09-02T14:33:15.146041+0530 - __main__ - ERROR - Internal Server Error: Error executing SQL query to get device_ids for datasource loadtesting_cooling2. Error executing SQL query: SELECT COUNT(DISTINCT deviceID) AS total_count
+FROM "loadtesting_cooling2" . Failed to execute SQL query.
+2024-09-02T14:33:15.158118+0530 - __main__ - INFO - Received request for /get_latest_summary_by_interval
+2024-09-02T14:33:15.159135+0530 - services.summary_service - INFO - Fetching summary for all datasources: ['loadtesting_hydrus2_2']
+2024-09-02T14:33:15.159135+0530 - services.summary_service - INFO - Processing datasource: loadtesting_hydrus2_2
+2024-09-02T14:33:15.160135+0530 - repo.druid_util - INFO - Executing SQL query: SELECT COUNT(DISTINCT deviceID) AS total_count
+FROM "loadtesting_hydrus2_2" 
+2024-09-02T14:33:15.793238+0530 - repo.druid_util - ERROR - Failed to execute SQL query: SELECT COUNT(DISTINCT deviceID) AS total_count
+FROM "loadtesting_hydrus2_2" . Status code: 400, Response: {"error":"Plan validation failed","errorMessage":"org.apache.calcite.runtime.CalciteContextException: From line 2, column 6 to line 2, column 28: Object 'loadtesting_hydrus2_2' not found","errorClass":"org.apache.calcite.tools.ValidationException","host":null}
+2024-09-02T14:33:15.794255+0530 - repo.druid_util - ERROR - Error executing SQL query: SELECT COUNT(DISTINCT deviceID) AS total_count
+FROM "loadtesting_hydrus2_2" 
+2024-09-02T14:33:15.795247+0530 - services.summary_service - ERROR - Error executing SQL query to get device_ids for datasource loadtesting_hydrus2_2
+2024-09-02T14:33:15.797160+0530 - __main__ - ERROR - Internal Server Error: Error executing SQL query to get device_ids for datasource loadtesting_hydrus2_2. Error executing SQL query: SELECT COUNT(DISTINCT deviceID) AS total_count
+FROM "loadtesting_hydrus2_2" . Failed to execute SQL query.
+2024-09-02T15:31:07.585799+0530 - __main__ - INFO - Received request for /get_summary_all_datasource
+2024-09-02T15:31:07.586810+0530 - services.summary_service - INFO - Fetching summary for all datasources: ['loadtest_pump2']
+2024-09-02T15:31:07.586810+0530 - services.summary_service - INFO - Processing datasource: loadtest_pump2
+2024-09-02T15:31:07.598822+0530 - repo.druid_util - INFO - Executing SQL query: SELECT COUNT(DISTINCT deviceID) AS total_count
+FROM "loadtest_pump2" 
+2024-09-02T15:31:08.497744+0530 - repo.druid_util - INFO - Query successful, total_count: 773
+2024-09-02T15:31:08.498725+0530 - services.summary_service - INFO - Device ID count for datasource 'loadtest_pump2': 773
+2024-09-02T15:31:08.499723+0530 - repo.druid_util - INFO - Executing SQL query: 
     SELECT
          AVG((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000) AS res
-    FROM "kafka-connection-test9"
-    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+    FROM "loadtest_pump2"
 
-2024-08-12T12:17:17.573473+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
-2024-08-12T12:17:17.574472+0530 - repo.druid_util - INFO - Executing SQL query: 
+2024-09-02T15:31:09.419510+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T15:31:09.421513+0530 - repo.druid_util - INFO - Executing SQL query: 
     SELECT
          MAX((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000) AS res
-    FROM "kafka-connection-test9"
-    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+    FROM "loadtest_pump2"
 
-2024-08-12T12:17:19.113301+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
-2024-08-12T12:17:19.145964+0530 - repo.druid_util - INFO - Executing SQL query: 
+2024-09-02T15:31:10.160185+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T15:31:10.161264+0530 - repo.druid_util - INFO - Executing SQL query: 
     SELECT
          MIN((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000) AS res
-    FROM "kafka-connection-test9"
+    FROM "loadtest_pump2"
+
+2024-09-02T15:31:10.913127+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T15:31:10.915190+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT COUNT(*) AS total_count FROM "loadtest_pump2"
+
+2024-09-02T15:31:11.627924+0530 - repo.druid_util - INFO - Query successful, total_count: 888800
+2024-09-02T15:31:11.629844+0530 - services.summary_service - INFO - Summary for datasource 'loadtest_pump2' added to results
+2024-09-02T15:31:11.629844+0530 - services.summary_service - INFO - Summary for all datasources fetched successfully
+2024-09-02T15:34:30.121976+0530 - __main__ - INFO - Received request for /get_latest_summary_by_interval
+2024-09-02T15:34:30.122984+0530 - services.summary_service - INFO - Fetching summary for all datasources: ['loadtest_pump2']
+2024-09-02T15:34:30.122984+0530 - services.summary_service - INFO - Processing datasource: loadtest_pump2
+2024-09-02T15:34:30.123985+0530 - repo.druid_util - INFO - Executing SQL query: SELECT COUNT(DISTINCT deviceID) AS total_count
+FROM "loadtest_pump2" 
+2024-09-02T15:34:30.873721+0530 - repo.druid_util - INFO - Query successful, total_count: 773
+2024-09-02T15:34:30.874710+0530 - services.summary_service - INFO - Device ID count for datasource 'loadtest_pump2': 773
+2024-09-02T15:34:30.874710+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         AVG((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000) AS res
+    FROM "loadtest_pump2"
     WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
 
-2024-08-12T12:17:20.053559+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
-2024-08-12T12:17:20.054568+0530 - repo.druid_util - INFO - Executing SQL query:  SELECT COUNT(*) as "total_count"
-FROM "kafka-connection-test9"
+2024-09-02T15:34:31.731489+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T15:34:31.731489+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MAX((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000) AS res
+    FROM "loadtest_pump2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T15:34:32.471305+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T15:34:32.472259+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MIN((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000) AS res
+    FROM "loadtest_pump2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T15:34:33.224533+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T15:34:33.225533+0530 - repo.druid_util - INFO - Executing SQL query:  SELECT COUNT(*) as "total_count"
+FROM "loadtest_pump2"
 WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP) 
-2024-08-12T12:17:20.785232+0530 - repo.druid_util - INFO - Query successful, total_count: 55944
-2024-08-12T12:17:20.786240+0530 - services.summary_service - INFO - Summary for datasource 'kafka-connection-test9' added to results
-2024-08-12T12:17:20.787238+0530 - services.summary_service - INFO - Summary for all datasources fetched successfully
+2024-09-02T15:34:33.966077+0530 - repo.druid_util - INFO - Query successful, total_count: 904800
+2024-09-02T15:34:33.968081+0530 - services.summary_service - INFO - Summary for datasource 'loadtest_pump2' added to results
+2024-09-02T15:34:33.968081+0530 - services.summary_service - INFO - Summary for all datasources fetched successfully
+2024-09-02T15:42:58.583122+0530 - __main__ - INFO - Received request for /get_summary_all_datasource
+2024-09-02T15:42:58.583122+0530 - services.summary_service - INFO - Fetching summary for all datasources: ['loadtest_pump2']
+2024-09-02T15:42:58.585141+0530 - services.summary_service - INFO - Processing datasource: loadtest_pump2
+2024-09-02T15:42:58.593154+0530 - repo.druid_util - INFO - Executing SQL query: SELECT COUNT(*) AS total_count
+FROM (
+ SELECT "deviceID"
+ FROM "loadtest_pump2"
+ GROUP BY "deviceID"
+) 
+2024-09-02T15:42:59.376258+0530 - repo.druid_util - INFO - Query successful, total_count: 800
+2024-09-02T15:42:59.377342+0530 - services.summary_service - INFO - Device ID count for datasource 'loadtest_pump2': 800
+2024-09-02T15:42:59.377342+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         AVG((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_pump2"
+
+2024-09-02T15:43:00.294380+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T15:43:00.295389+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MAX((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_pump2"
+
+2024-09-02T15:43:01.050274+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T15:43:01.052394+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MIN((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_pump2"
+
+2024-09-02T15:43:02.092739+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T15:43:02.094645+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT COUNT(*) AS total_count FROM "loadtest_pump2"
+
+2024-09-02T15:43:02.857689+0530 - repo.druid_util - INFO - Query successful, total_count: 945600
+2024-09-02T15:43:02.859684+0530 - services.summary_service - INFO - Summary for datasource 'loadtest_pump2' added to results
+2024-09-02T15:43:02.859684+0530 - services.summary_service - INFO - Summary for all datasources fetched successfully
+2024-09-02T15:43:20.811590+0530 - __main__ - INFO - Received request for /get_latest_summary_by_interval
+2024-09-02T15:43:20.812591+0530 - services.summary_service - INFO - Fetching summary for all datasources: ['loadtest_pump2']
+2024-09-02T15:43:20.812591+0530 - services.summary_service - INFO - Processing datasource: loadtest_pump2
+2024-09-02T15:43:20.813592+0530 - repo.druid_util - INFO - Executing SQL query: SELECT COUNT(*) AS total_count
+FROM (
+ SELECT "deviceID"
+ FROM "loadtest_pump2"
+ GROUP BY "deviceID"
+) 
+2024-09-02T15:43:21.586708+0530 - repo.druid_util - INFO - Query successful, total_count: 800
+2024-09-02T15:43:21.587820+0530 - services.summary_service - INFO - Device ID count for datasource 'loadtest_pump2': 800
+2024-09-02T15:43:21.588927+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         AVG((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000) AS res
+    FROM "loadtest_pump2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T15:43:22.366552+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T15:43:22.368547+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MAX((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000) AS res
+    FROM "loadtest_pump2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T15:43:23.103965+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T15:43:23.105587+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MIN((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000) AS res
+    FROM "loadtest_pump2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T15:43:23.840673+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T15:43:23.842669+0530 - repo.druid_util - INFO - Executing SQL query:  SELECT COUNT(*) as "total_count"
+FROM "loadtest_pump2"
+WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP) 
+2024-09-02T15:43:24.567699+0530 - repo.druid_util - INFO - Query successful, total_count: 947200
+2024-09-02T15:43:24.568703+0530 - services.summary_service - INFO - Summary for datasource 'loadtest_pump2' added to results
+2024-09-02T15:43:24.568703+0530 - services.summary_service - INFO - Summary for all datasources fetched successfully
+2024-09-02T15:44:37.266223+0530 - __main__ - INFO - Received request for /get_summary_all_datasource
+2024-09-02T15:44:37.267222+0530 - services.summary_service - INFO - Fetching summary for all datasources: ['loadtest_pump2']
+2024-09-02T15:44:37.268224+0530 - services.summary_service - INFO - Processing datasource: loadtest_pump2
+2024-09-02T15:44:37.270224+0530 - repo.druid_util - INFO - Executing SQL query: SELECT COUNT(*) AS total_count
+FROM (
+ SELECT "deviceID"
+ FROM "loadtest_pump2"
+ GROUP BY "deviceID"
+) 
+2024-09-02T15:44:38.028308+0530 - repo.druid_util - INFO - Query successful, total_count: 800
+2024-09-02T15:44:38.030307+0530 - services.summary_service - INFO - Device ID count for datasource 'loadtest_pump2': 800
+2024-09-02T15:44:38.030307+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         AVG((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_pump2"
+
+2024-09-02T15:44:38.773932+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T15:44:38.775932+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MAX((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_pump2"
+
+2024-09-02T15:44:39.506123+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T15:44:39.507124+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MIN((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_pump2"
+
+2024-09-02T15:44:40.237435+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T15:44:40.238435+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT COUNT(*) AS total_count FROM "loadtest_pump2"
+
+2024-09-02T15:44:40.959000+0530 - repo.druid_util - INFO - Query successful, total_count: 952800
+2024-09-02T15:44:40.960004+0530 - services.summary_service - INFO - Summary for datasource 'loadtest_pump2' added to results
+2024-09-02T15:44:40.960004+0530 - services.summary_service - INFO - Summary for all datasources fetched successfully
+2024-09-02T15:44:52.153640+0530 - __main__ - INFO - Received request for /get_latest_summary_by_interval
+2024-09-02T15:44:52.154718+0530 - services.summary_service - INFO - Fetching summary for all datasources: ['loadtest_pump2']
+2024-09-02T15:44:52.154718+0530 - services.summary_service - INFO - Processing datasource: loadtest_pump2
+2024-09-02T15:44:52.155636+0530 - repo.druid_util - INFO - Executing SQL query: SELECT COUNT(*) AS total_count
+FROM (
+ SELECT "deviceID"
+ FROM "loadtest_pump2"
+ GROUP BY "deviceID"
+) 
+2024-09-02T15:44:52.926041+0530 - repo.druid_util - INFO - Query successful, total_count: 800
+2024-09-02T15:44:52.928624+0530 - services.summary_service - INFO - Device ID count for datasource 'loadtest_pump2': 800
+2024-09-02T15:44:52.928624+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         AVG((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_pump2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T15:44:53.684176+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T15:44:53.686103+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MAX((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_pump2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T15:44:54.422967+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T15:44:54.424972+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MIN((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_pump2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T15:44:55.160468+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T15:44:55.163414+0530 - repo.druid_util - INFO - Executing SQL query:  SELECT COUNT(*) as "total_count"
+FROM "loadtest_pump2"
+WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP) 
+2024-09-02T15:44:55.905032+0530 - repo.druid_util - INFO - Query successful, total_count: 954400
+2024-09-02T15:44:55.907030+0530 - services.summary_service - INFO - Summary for datasource 'loadtest_pump2' added to results
+2024-09-02T15:44:55.907030+0530 - services.summary_service - INFO - Summary for all datasources fetched successfully
+2024-09-02T15:45:14.144688+0530 - __main__ - INFO - Received request for /get_device_id_per_datasource
+2024-09-02T15:45:14.144688+0530 - services.summary_service - INFO - Fetching Device Id for all datasource: loadtest_pump2
+2024-09-02T15:45:14.145711+0530 - repo.druid_util - INFO - Executing SQL query: SELECT DISTINCT deviceID
+FROM "loadtest_pump2" 
+2024-09-02T15:45:15.081389+0530 - repo.druid_util - INFO - Query successful, retrieved 800 records
+2024-09-02T15:45:15.087379+0530 - services.summary_service - INFO - Device Id fetched successfully for datasource 'loadtest_pump2'
+2024-09-02T15:48:30.626521+0530 - __main__ - INFO - Received request for /get_records_count_date_range
+2024-09-02T15:48:30.627522+0530 - services.no_of_records_service - INFO - Dates converted to required format: 2024-09-02T00:00:00Z to 2024-09-03T00:00:00Z
+2024-09-02T15:48:30.628525+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT COUNT(*) AS total_count 
+    FROM "loadtest_pump2" 
+    WHERE "__time" >= '2024-09-02T00:00:00Z' AND "__time" < '2024-09-03T00:00:00Z'
+
+2024-09-02T15:48:31.347788+0530 - repo.druid_util - INFO - Query successful, total_count: 971200
+2024-09-02T15:50:09.636088+0530 - __main__ - INFO - Received request for /get_records_count_aggregated
+2024-09-02T15:50:09.636088+0530 - services.no_of_records_service - INFO - Aggregation interval selected: PT1H
+2024-09-02T15:50:09.637284+0530 - services.no_of_records_service - INFO - Dates converted to required format: 2024-09-02T00:00:00Z to 2024-09-03T00:00:00Z
+2024-09-02T15:50:09.638367+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT TIME_FLOOR(__time, 'PT1H') AS __time,
+           COUNT(*) AS res
+    FROM "loadtest_pump2" 
+    WHERE "__time" >= '2024-09-02T00:00:00Z' AND "__time" < '2024-09-03T00:00:00Z'
+    GROUP BY TIME_FLOOR(__time, 'PT1H')
+
+2024-09-02T15:50:10.372790+0530 - repo.druid_util - INFO - Query successful, retrieved 4 records
+2024-09-02T15:51:25.047597+0530 - __main__ - INFO - Received request for /get_processing_time_date_range
+2024-09-02T15:51:25.048595+0530 - services.processing_time_service - INFO - Metric interval selected: AVG
+2024-09-02T15:51:25.048595+0530 - services.processing_time_service - INFO - Dates converted to required format: 2024-09-02T00:00:00Z to 2024-09-03T00:00:00Z
+2024-09-02T15:51:25.049597+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+        AVG((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_pump2"
+    WHERE "__time" >= '2024-09-02T00:00:00Z' AND "__time" < '2024-09-03T00:00:00Z'
+
+2024-09-02T15:51:25.800435+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T15:51:25.801434+0530 - services.processing_time_service - INFO - Query executed successfully, result: [{'res': 1.1781319977678761}]
+2024-09-02T15:52:23.126936+0530 - __main__ - INFO - Received request for /get_processing_time_aggregated
+2024-09-02T15:52:23.127935+0530 - services.processing_time_service - INFO - Aggregation interval selected: PT1H
+2024-09-02T15:52:23.127935+0530 - services.processing_time_service - INFO - Metric interval selected: AVG
+2024-09-02T15:52:23.128939+0530 - services.processing_time_service - INFO - Dates converted to required format: 2024-09-02T00:00:00Z to 2024-09-03T00:00:00Z
+2024-09-02T15:52:23.128939+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT TIME_FLOOR(__time, 'PT1H') AS __time,
+           AVG((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_pump2"
+    WHERE "__time" >= '2024-09-02T00:00:00Z' AND "__time" < '2024-09-03T00:00:00Z'
+    GROUP BY TIME_FLOOR(__time, 'PT1H')
+
+2024-09-02T15:52:23.884080+0530 - repo.druid_util - INFO - Query successful, retrieved 4 records
+2024-09-02T15:52:23.885090+0530 - services.processing_time_service - INFO - Query executed successfully, result: [{'__time': '2024-09-02T00:00:00.000Z', 'res': 0.8818233229167117}, {'__time': '2024-09-02T01:00:00.000Z', 'res': 1.3633986631944779}, {'__time': '2024-09-02T02:00:00.000Z', 'res': 1.4729031701388848}, {'__time': '2024-09-02T03:00:00.000Z', 'res': 0.7444453401898631}]
+2024-09-02T16:16:53.990045+0530 - __main__ - INFO - Received request for /get_latest_summary_by_interval
+2024-09-02T16:16:53.990045+0530 - services.summary_service - INFO - Fetching summary for all datasources: ['loadtest_cooling2']
+2024-09-02T16:16:53.991046+0530 - services.summary_service - INFO - Processing datasource: loadtest_cooling2
+2024-09-02T16:16:53.992046+0530 - repo.druid_util - INFO - Executing SQL query: SELECT COUNT(*) AS total_count
+FROM (
+ SELECT "deviceID"
+ FROM "loadtest_cooling2"
+ GROUP BY "deviceID"
+) 
+2024-09-02T16:16:54.981054+0530 - repo.druid_util - INFO - Query successful, total_count: 1000
+2024-09-02T16:16:54.983133+0530 - services.summary_service - INFO - Device ID count for datasource 'loadtest_cooling2': 1000
+2024-09-02T16:16:54.983133+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         AVG((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_cooling2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:16:55.747025+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:16:55.749022+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MAX((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_cooling2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:16:56.524901+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:16:56.525893+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MIN((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_cooling2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:16:57.296520+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:16:57.298440+0530 - repo.druid_util - INFO - Executing SQL query:  SELECT COUNT(*) as "total_count"
+FROM "loadtest_cooling2"
+WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP) 
+2024-09-02T16:16:58.031803+0530 - repo.druid_util - INFO - Query successful, total_count: 1320272
+2024-09-02T16:16:58.032735+0530 - services.summary_service - INFO - Summary for datasource 'loadtest_cooling2' added to results
+2024-09-02T16:16:58.032735+0530 - services.summary_service - INFO - Summary for all datasources fetched successfully
+2024-09-02T16:16:58.034735+0530 - __main__ - INFO - Received request for /get_latest_summary_by_interval
+2024-09-02T16:16:58.035732+0530 - services.summary_service - INFO - Fetching summary for all datasources: ['loadtest_cooling2']
+2024-09-02T16:16:58.035732+0530 - services.summary_service - INFO - Processing datasource: loadtest_cooling2
+2024-09-02T16:16:58.035732+0530 - repo.druid_util - INFO - Executing SQL query: SELECT COUNT(*) AS total_count
+FROM (
+ SELECT "deviceID"
+ FROM "loadtest_cooling2"
+ GROUP BY "deviceID"
+) 
+2024-09-02T16:16:58.037730+0530 - __main__ - INFO - Received request for /get_latest_summary_by_interval
+2024-09-02T16:16:58.037730+0530 - services.summary_service - INFO - Fetching summary for all datasources: ['loadtest_hydrus2_2']
+2024-09-02T16:16:58.037730+0530 - services.summary_service - INFO - Processing datasource: loadtest_hydrus2_2
+2024-09-02T16:16:58.038731+0530 - repo.druid_util - INFO - Executing SQL query: SELECT COUNT(*) AS total_count
+FROM (
+ SELECT "deviceID"
+ FROM "loadtest_hydrus2_2"
+ GROUP BY "deviceID"
+) 
+2024-09-02T16:16:58.851019+0530 - repo.druid_util - INFO - Query successful, total_count: 1000
+2024-09-02T16:16:58.852019+0530 - services.summary_service - INFO - Device ID count for datasource 'loadtest_cooling2': 1000
+2024-09-02T16:16:58.853103+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         AVG((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_cooling2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:16:59.082775+0530 - repo.druid_util - INFO - Query successful, total_count: 1000
+2024-09-02T16:16:59.084788+0530 - services.summary_service - INFO - Device ID count for datasource 'loadtest_hydrus2_2': 1000
+2024-09-02T16:16:59.085784+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         AVG((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_hydrus2_2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:16:59.706698+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:16:59.708709+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MAX((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_cooling2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:00.410117+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:00.412167+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MAX((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_hydrus2_2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:00.443763+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:00.444765+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MIN((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_cooling2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:01.174988+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:01.175985+0530 - repo.druid_util - INFO - Executing SQL query:  SELECT COUNT(*) as "total_count"
+FROM "loadtest_cooling2"
+WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP) 
+2024-09-02T16:17:01.223093+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:01.225093+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MIN((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_hydrus2_2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:01.912011+0530 - repo.druid_util - INFO - Query successful, total_count: 1320272
+2024-09-02T16:17:01.913008+0530 - services.summary_service - INFO - Summary for datasource 'loadtest_cooling2' added to results
+2024-09-02T16:17:01.914012+0530 - services.summary_service - INFO - Summary for all datasources fetched successfully
+2024-09-02T16:17:02.002364+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:02.004280+0530 - repo.druid_util - INFO - Executing SQL query:  SELECT COUNT(*) as "total_count"
+FROM "loadtest_hydrus2_2"
+WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP) 
+2024-09-02T16:17:02.717575+0530 - repo.druid_util - INFO - Query successful, total_count: 1436000
+2024-09-02T16:17:02.719516+0530 - services.summary_service - INFO - Summary for datasource 'loadtest_hydrus2_2' added to results
+2024-09-02T16:17:02.720475+0530 - services.summary_service - INFO - Summary for all datasources fetched successfully
+2024-09-02T16:17:02.724486+0530 - __main__ - INFO - Received request for /get_latest_summary_by_interval
+2024-09-02T16:17:02.725481+0530 - services.summary_service - INFO - Fetching summary for all datasources: ['loadtest_hydrus2_2']
+2024-09-02T16:17:02.725481+0530 - services.summary_service - INFO - Processing datasource: loadtest_hydrus2_2
+2024-09-02T16:17:02.726486+0530 - repo.druid_util - INFO - Executing SQL query: SELECT COUNT(*) AS total_count
+FROM (
+ SELECT "deviceID"
+ FROM "loadtest_hydrus2_2"
+ GROUP BY "deviceID"
+) 
+2024-09-02T16:17:02.728488+0530 - __main__ - INFO - Received request for /get_latest_summary_by_interval
+2024-09-02T16:17:02.729481+0530 - services.summary_service - INFO - Fetching summary for all datasources: ['loadtest_hydrus_new']
+2024-09-02T16:17:02.729481+0530 - services.summary_service - INFO - Processing datasource: loadtest_hydrus_new
+2024-09-02T16:17:02.730480+0530 - repo.druid_util - INFO - Executing SQL query: SELECT COUNT(*) AS total_count
+FROM (
+ SELECT "deviceID"
+ FROM "loadtest_hydrus_new"
+ GROUP BY "deviceID"
+) 
+2024-09-02T16:17:03.539802+0530 - repo.druid_util - INFO - Query successful, total_count: 1000
+2024-09-02T16:17:03.541814+0530 - services.summary_service - INFO - Device ID count for datasource 'loadtest_hydrus2_2': 1000
+2024-09-02T16:17:03.543724+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         AVG((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_hydrus2_2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:03.745066+0530 - repo.druid_util - INFO - Query successful, total_count: 1000
+2024-09-02T16:17:03.745066+0530 - services.summary_service - INFO - Device ID count for datasource 'loadtest_hydrus_new': 1000
+2024-09-02T16:17:03.746526+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         AVG((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_hydrus_new"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:04.293639+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:04.295635+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MAX((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_hydrus2_2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:04.903167+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:04.905118+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MAX((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_hydrus_new"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:05.116523+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:05.118561+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MIN((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_hydrus2_2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:05.710519+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:05.712503+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MIN((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_hydrus_new"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:05.865023+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:05.866945+0530 - repo.druid_util - INFO - Executing SQL query:  SELECT COUNT(*) as "total_count"
+FROM "loadtest_hydrus2_2"
+WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP) 
+2024-09-02T16:17:06.489626+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:06.491510+0530 - repo.druid_util - INFO - Executing SQL query:  SELECT COUNT(*) as "total_count"
+FROM "loadtest_hydrus_new"
+WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP) 
+2024-09-02T16:17:06.589844+0530 - repo.druid_util - INFO - Query successful, total_count: 1436000
+2024-09-02T16:17:06.591893+0530 - services.summary_service - INFO - Summary for datasource 'loadtest_hydrus2_2' added to results
+2024-09-02T16:17:06.591893+0530 - services.summary_service - INFO - Summary for all datasources fetched successfully
+2024-09-02T16:17:07.222863+0530 - repo.druid_util - INFO - Query successful, total_count: 1420000
+2024-09-02T16:17:07.223863+0530 - services.summary_service - INFO - Summary for datasource 'loadtest_hydrus_new' added to results
+2024-09-02T16:17:07.224933+0530 - services.summary_service - INFO - Summary for all datasources fetched successfully
+2024-09-02T16:17:07.229523+0530 - __main__ - INFO - Received request for /get_latest_summary_by_interval
+2024-09-02T16:17:07.230549+0530 - services.summary_service - INFO - Fetching summary for all datasources: ['loadtest_hydrus_new']
+2024-09-02T16:17:07.230549+0530 - services.summary_service - INFO - Processing datasource: loadtest_hydrus_new
+2024-09-02T16:17:07.231538+0530 - repo.druid_util - INFO - Executing SQL query: SELECT COUNT(*) AS total_count
+FROM (
+ SELECT "deviceID"
+ FROM "loadtest_hydrus_new"
+ GROUP BY "deviceID"
+) 
+2024-09-02T16:17:07.234539+0530 - __main__ - INFO - Received request for /get_latest_summary_by_interval
+2024-09-02T16:17:07.234539+0530 - services.summary_service - INFO - Fetching summary for all datasources: ['loadtest_duba2']
+2024-09-02T16:17:07.235535+0530 - services.summary_service - INFO - Processing datasource: loadtest_duba2
+2024-09-02T16:17:07.236531+0530 - repo.druid_util - INFO - Executing SQL query: SELECT COUNT(*) AS total_count
+FROM (
+ SELECT "deviceID"
+ FROM "loadtest_duba2"
+ GROUP BY "deviceID"
+) 
+2024-09-02T16:17:08.022148+0530 - repo.druid_util - INFO - Query successful, total_count: 1000
+2024-09-02T16:17:08.024278+0530 - services.summary_service - INFO - Device ID count for datasource 'loadtest_hydrus_new': 1000
+2024-09-02T16:17:08.025247+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         AVG((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_hydrus_new"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:08.231370+0530 - repo.druid_util - INFO - Query successful, total_count: 800
+2024-09-02T16:17:08.232382+0530 - services.summary_service - INFO - Device ID count for datasource 'loadtest_duba2': 800
+2024-09-02T16:17:08.233380+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         AVG((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_duba2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:08.799440+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:08.801376+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MAX((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_hydrus_new"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:09.412562+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:09.415611+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MAX((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_duba2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:09.551126+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:09.553119+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MIN((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_hydrus_new"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:10.173459+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:10.175360+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MIN((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_duba2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:10.292415+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:10.294330+0530 - repo.druid_util - INFO - Executing SQL query:  SELECT COUNT(*) as "total_count"
+FROM "loadtest_hydrus_new"
+WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP) 
+2024-09-02T16:17:10.936022+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:10.938041+0530 - repo.druid_util - INFO - Executing SQL query:  SELECT COUNT(*) as "total_count"
+FROM "loadtest_duba2"
+WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP) 
+2024-09-02T16:17:11.012288+0530 - repo.druid_util - INFO - Query successful, total_count: 1420000
+2024-09-02T16:17:11.014203+0530 - services.summary_service - INFO - Summary for datasource 'loadtest_hydrus_new' added to results
+2024-09-02T16:17:11.014203+0530 - services.summary_service - INFO - Summary for all datasources fetched successfully
+2024-09-02T16:17:11.650521+0530 - repo.druid_util - INFO - Query successful, total_count: 1119200
+2024-09-02T16:17:11.651518+0530 - services.summary_service - INFO - Summary for datasource 'loadtest_duba2' added to results
+2024-09-02T16:17:11.652838+0530 - services.summary_service - INFO - Summary for all datasources fetched successfully
+2024-09-02T16:17:11.657750+0530 - __main__ - INFO - Received request for /get_latest_summary_by_interval
+2024-09-02T16:17:11.657750+0530 - services.summary_service - INFO - Fetching summary for all datasources: ['loadtest_duba2']
+2024-09-02T16:17:11.658755+0530 - services.summary_service - INFO - Processing datasource: loadtest_duba2
+2024-09-02T16:17:11.658755+0530 - repo.druid_util - INFO - Executing SQL query: SELECT COUNT(*) AS total_count
+FROM (
+ SELECT "deviceID"
+ FROM "loadtest_duba2"
+ GROUP BY "deviceID"
+) 
+2024-09-02T16:17:11.671920+0530 - __main__ - INFO - Received request for /get_latest_summary_by_interval
+2024-09-02T16:17:11.671920+0530 - services.summary_service - INFO - Fetching summary for all datasources: ['loadtest_pump2']
+2024-09-02T16:17:11.672933+0530 - services.summary_service - INFO - Processing datasource: loadtest_pump2
+2024-09-02T16:17:11.673915+0530 - repo.druid_util - INFO - Executing SQL query: SELECT COUNT(*) AS total_count
+FROM (
+ SELECT "deviceID"
+ FROM "loadtest_pump2"
+ GROUP BY "deviceID"
+) 
+2024-09-02T16:17:12.412995+0530 - repo.druid_util - INFO - Query successful, total_count: 800
+2024-09-02T16:17:12.414908+0530 - services.summary_service - INFO - Device ID count for datasource 'loadtest_duba2': 800
+2024-09-02T16:17:12.415905+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         AVG((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_duba2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:12.447455+0530 - repo.druid_util - INFO - Query successful, total_count: 800
+2024-09-02T16:17:12.447455+0530 - services.summary_service - INFO - Device ID count for datasource 'loadtest_pump2': 800
+2024-09-02T16:17:12.448461+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         AVG((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_pump2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:13.175764+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:13.177792+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MAX((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_duba2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:13.202262+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:13.204254+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MAX((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_pump2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:13.910657+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:13.912650+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MIN((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_duba2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:13.955374+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:13.956993+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MIN((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_pump2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:14.650939+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:14.652976+0530 - repo.druid_util - INFO - Executing SQL query:  SELECT COUNT(*) as "total_count"
+FROM "loadtest_duba2"
+WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP) 
+2024-09-02T16:17:14.704213+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:14.706204+0530 - repo.druid_util - INFO - Executing SQL query:  SELECT COUNT(*) as "total_count"
+FROM "loadtest_pump2"
+WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP) 
+2024-09-02T16:17:15.373674+0530 - repo.druid_util - INFO - Query successful, total_count: 1119200
+2024-09-02T16:17:15.375568+0530 - services.summary_service - INFO - Summary for datasource 'loadtest_duba2' added to results
+2024-09-02T16:17:15.376555+0530 - services.summary_service - INFO - Summary for all datasources fetched successfully
+2024-09-02T16:17:15.445134+0530 - repo.druid_util - INFO - Query successful, total_count: 1109600
+2024-09-02T16:17:15.446130+0530 - services.summary_service - INFO - Summary for datasource 'loadtest_pump2' added to results
+2024-09-02T16:17:15.447141+0530 - services.summary_service - INFO - Summary for all datasources fetched successfully
+2024-09-02T16:17:15.451723+0530 - __main__ - INFO - Received request for /get_latest_summary_by_interval
+2024-09-02T16:17:15.452721+0530 - services.summary_service - INFO - Fetching summary for all datasources: ['loadtest_pump2']
+2024-09-02T16:17:15.453725+0530 - services.summary_service - INFO - Processing datasource: loadtest_pump2
+2024-09-02T16:17:15.454720+0530 - repo.druid_util - INFO - Executing SQL query: SELECT COUNT(*) AS total_count
+FROM (
+ SELECT "deviceID"
+ FROM "loadtest_pump2"
+ GROUP BY "deviceID"
+) 
+2024-09-02T16:17:15.455722+0530 - __main__ - INFO - Received request for /get_latest_summary_by_interval
+2024-09-02T16:17:15.455722+0530 - services.summary_service - INFO - Fetching summary for all datasources: ['loadtest_flow2']
+2024-09-02T16:17:15.456757+0530 - services.summary_service - INFO - Processing datasource: loadtest_flow2
+2024-09-02T16:17:15.456757+0530 - repo.druid_util - INFO - Executing SQL query: SELECT COUNT(*) AS total_count
+FROM (
+ SELECT "deviceID"
+ FROM "loadtest_flow2"
+ GROUP BY "deviceID"
+) 
+2024-09-02T16:17:16.210949+0530 - repo.druid_util - INFO - Query successful, total_count: 800
+2024-09-02T16:17:16.211959+0530 - services.summary_service - INFO - Device ID count for datasource 'loadtest_pump2': 800
+2024-09-02T16:17:16.212879+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         AVG((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_pump2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:16.535722+0530 - repo.druid_util - INFO - Query successful, total_count: 800
+2024-09-02T16:17:16.537657+0530 - services.summary_service - INFO - Device ID count for datasource 'loadtest_flow2': 800
+2024-09-02T16:17:16.538645+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         AVG((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_flow2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:16.964039+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:16.964995+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MAX((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_pump2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:17.722957+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:17.724866+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MIN((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_pump2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:17.786796+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:17.788794+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MAX((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_flow2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:18.466110+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:18.468099+0530 - repo.druid_util - INFO - Executing SQL query:  SELECT COUNT(*) as "total_count"
+FROM "loadtest_pump2"
+WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP) 
+2024-09-02T16:17:18.588267+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:18.590198+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MIN((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_flow2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:19.198867+0530 - repo.druid_util - INFO - Query successful, total_count: 1109600
+2024-09-02T16:17:19.199859+0530 - services.summary_service - INFO - Summary for datasource 'loadtest_pump2' added to results
+2024-09-02T16:17:19.199859+0530 - services.summary_service - INFO - Summary for all datasources fetched successfully
+2024-09-02T16:17:19.350142+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:19.352050+0530 - repo.druid_util - INFO - Executing SQL query:  SELECT COUNT(*) as "total_count"
+FROM "loadtest_flow2"
+WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP) 
+2024-09-02T16:17:20.083802+0530 - repo.druid_util - INFO - Query successful, total_count: 1099345
+2024-09-02T16:17:20.084767+0530 - services.summary_service - INFO - Summary for datasource 'loadtest_flow2' added to results
+2024-09-02T16:17:20.085819+0530 - services.summary_service - INFO - Summary for all datasources fetched successfully
+2024-09-02T16:17:20.090735+0530 - __main__ - INFO - Received request for /get_latest_summary_by_interval
+2024-09-02T16:17:20.091718+0530 - services.summary_service - INFO - Fetching summary for all datasources: ['loadtest_flow2']
+2024-09-02T16:17:20.091718+0530 - services.summary_service - INFO - Processing datasource: loadtest_flow2
+2024-09-02T16:17:20.092727+0530 - repo.druid_util - INFO - Executing SQL query: SELECT COUNT(*) AS total_count
+FROM (
+ SELECT "deviceID"
+ FROM "loadtest_flow2"
+ GROUP BY "deviceID"
+) 
+2024-09-02T16:17:20.104929+0530 - __main__ - INFO - Received request for /get_latest_summary_by_interval
+2024-09-02T16:17:20.105824+0530 - services.summary_service - INFO - Fetching summary for all datasources: ['loadtest_energyprofile2']
+2024-09-02T16:17:20.105824+0530 - services.summary_service - INFO - Processing datasource: loadtest_energyprofile2
+2024-09-02T16:17:20.106824+0530 - repo.druid_util - INFO - Executing SQL query: SELECT COUNT(*) AS total_count
+FROM (
+ SELECT "deviceID"
+ FROM "loadtest_energyprofile2"
+ GROUP BY "deviceID"
+) 
+2024-09-02T16:17:20.835111+0530 - repo.druid_util - INFO - Query successful, total_count: 800
+2024-09-02T16:17:20.837135+0530 - services.summary_service - INFO - Device ID count for datasource 'loadtest_flow2': 800
+2024-09-02T16:17:20.838211+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         AVG((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_flow2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:21.101583+0530 - repo.druid_util - INFO - Query successful, total_count: 1000
+2024-09-02T16:17:21.103505+0530 - services.summary_service - INFO - Device ID count for datasource 'loadtest_energyprofile2': 1000
+2024-09-02T16:17:21.104504+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         AVG((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_energyprofile2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:21.622200+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:21.624140+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MAX((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_flow2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:22.356521+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:22.358475+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MAX((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_energyprofile2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:22.373870+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:22.375858+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MIN((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_flow2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:23.104016+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:23.105982+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MIN((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_energyprofile2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:23.113905+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:23.115898+0530 - repo.druid_util - INFO - Executing SQL query:  SELECT COUNT(*) as "total_count"
+FROM "loadtest_flow2"
+WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP) 
+2024-09-02T16:17:23.858321+0530 - repo.druid_util - INFO - Query successful, total_count: 1100000
+2024-09-02T16:17:23.860090+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:23.860090+0530 - services.summary_service - INFO - Summary for datasource 'loadtest_flow2' added to results
+2024-09-02T16:17:23.861114+0530 - services.summary_service - INFO - Summary for all datasources fetched successfully
+2024-09-02T16:17:23.864102+0530 - repo.druid_util - INFO - Executing SQL query:  SELECT COUNT(*) as "total_count"
+FROM "loadtest_energyprofile2"
+WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP) 
+2024-09-02T16:17:24.575632+0530 - repo.druid_util - INFO - Query successful, total_count: 889000
+2024-09-02T16:17:24.576635+0530 - services.summary_service - INFO - Summary for datasource 'loadtest_energyprofile2' added to results
+2024-09-02T16:17:24.577561+0530 - services.summary_service - INFO - Summary for all datasources fetched successfully
+2024-09-02T16:17:24.582548+0530 - __main__ - INFO - Received request for /get_latest_summary_by_interval
+2024-09-02T16:17:24.582548+0530 - services.summary_service - INFO - Fetching summary for all datasources: ['loadtest_energyprofile2']
+2024-09-02T16:17:24.583557+0530 - services.summary_service - INFO - Processing datasource: loadtest_energyprofile2
+2024-09-02T16:17:24.583557+0530 - repo.druid_util - INFO - Executing SQL query: SELECT COUNT(*) AS total_count
+FROM (
+ SELECT "deviceID"
+ FROM "loadtest_energyprofile2"
+ GROUP BY "deviceID"
+) 
+2024-09-02T16:17:24.584539+0530 - __main__ - INFO - Received request for /get_latest_summary_by_interval
+2024-09-02T16:17:24.587540+0530 - services.summary_service - INFO - Fetching summary for all datasources: ['loadtest_sharmaopcua2']
+2024-09-02T16:17:24.587540+0530 - services.summary_service - INFO - Processing datasource: loadtest_sharmaopcua2
+2024-09-02T16:17:24.588545+0530 - repo.druid_util - INFO - Executing SQL query: SELECT COUNT(*) AS total_count
+FROM (
+ SELECT "deviceID"
+ FROM "loadtest_sharmaopcua2"
+ GROUP BY "deviceID"
+) 
+2024-09-02T16:17:25.347459+0530 - repo.druid_util - INFO - Query successful, total_count: 1000
+2024-09-02T16:17:25.349453+0530 - services.summary_service - INFO - Device ID count for datasource 'loadtest_energyprofile2': 1000
+2024-09-02T16:17:25.350437+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         AVG((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_energyprofile2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:25.547600+0530 - repo.druid_util - INFO - Query successful, total_count: 800
+2024-09-02T16:17:25.549599+0530 - services.summary_service - INFO - Device ID count for datasource 'loadtest_sharmaopcua2': 800
+2024-09-02T16:17:25.550587+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         AVG((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_sharmaopcua2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:26.089277+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:26.091319+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MAX((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_energyprofile2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:26.716973+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:26.718969+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MAX((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_sharmaopcua2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:26.821181+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:26.823171+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MIN((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_energyprofile2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:27.519263+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:27.521296+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MIN((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_sharmaopcua2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:27.549828+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:27.551813+0530 - repo.druid_util - INFO - Executing SQL query:  SELECT COUNT(*) as "total_count"
+FROM "loadtest_energyprofile2"
+WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP) 
+2024-09-02T16:17:28.271497+0530 - repo.druid_util - INFO - Query successful, total_count: 890000
+2024-09-02T16:17:28.273912+0530 - services.summary_service - INFO - Summary for datasource 'loadtest_energyprofile2' added to results
+2024-09-02T16:17:28.273912+0530 - services.summary_service - INFO - Summary for all datasources fetched successfully
+2024-09-02T16:17:28.277175+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:28.278183+0530 - repo.druid_util - INFO - Executing SQL query:  SELECT COUNT(*) as "total_count"
+FROM "loadtest_sharmaopcua2"
+WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP) 
+2024-09-02T16:17:28.978940+0530 - repo.druid_util - INFO - Query successful, total_count: 1079200
+2024-09-02T16:17:28.980953+0530 - services.summary_service - INFO - Summary for datasource 'loadtest_sharmaopcua2' added to results
+2024-09-02T16:17:28.980953+0530 - services.summary_service - INFO - Summary for all datasources fetched successfully
+2024-09-02T16:17:28.985278+0530 - __main__ - INFO - Received request for /get_latest_summary_by_interval
+2024-09-02T16:17:28.986391+0530 - services.summary_service - INFO - Fetching summary for all datasources: ['loadtest_sharmaopcua2']
+2024-09-02T16:17:28.986391+0530 - services.summary_service - INFO - Processing datasource: loadtest_sharmaopcua2
+2024-09-02T16:17:28.987704+0530 - repo.druid_util - INFO - Executing SQL query: SELECT COUNT(*) AS total_count
+FROM (
+ SELECT "deviceID"
+ FROM "loadtest_sharmaopcua2"
+ GROUP BY "deviceID"
+) 
+2024-09-02T16:17:28.988721+0530 - __main__ - INFO - Received request for /get_latest_summary_by_interval
+2024-09-02T16:17:28.989716+0530 - services.summary_service - INFO - Fetching summary for all datasources: ['loadtest_wrecycle2']
+2024-09-02T16:17:28.989716+0530 - services.summary_service - INFO - Processing datasource: loadtest_wrecycle2
+2024-09-02T16:17:28.990718+0530 - repo.druid_util - INFO - Executing SQL query: SELECT COUNT(*) AS total_count
+FROM (
+ SELECT "deviceID"
+ FROM "loadtest_wrecycle2"
+ GROUP BY "deviceID"
+) 
+2024-09-02T16:17:29.761533+0530 - repo.druid_util - INFO - Query successful, total_count: 800
+2024-09-02T16:17:29.763550+0530 - services.summary_service - INFO - Device ID count for datasource 'loadtest_sharmaopcua2': 800
+2024-09-02T16:17:29.764548+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         AVG((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_sharmaopcua2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:29.973805+0530 - repo.druid_util - INFO - Query successful, total_count: 1000
+2024-09-02T16:17:29.975725+0530 - services.summary_service - INFO - Device ID count for datasource 'loadtest_wrecycle2': 1000
+2024-09-02T16:17:29.976726+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         AVG((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_wrecycle2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:30.503656+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:30.506739+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MAX((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_sharmaopcua2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:31.133017+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:31.135118+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MAX((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_wrecycle2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:31.240989+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:31.242919+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MIN((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_sharmaopcua2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:31.925020+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:31.926998+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MIN((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_wrecycle2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:31.988624+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:31.990628+0530 - repo.druid_util - INFO - Executing SQL query:  SELECT COUNT(*) as "total_count"
+FROM "loadtest_sharmaopcua2"
+WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP) 
+2024-09-02T16:17:32.680409+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:32.682015+0530 - repo.druid_util - INFO - Executing SQL query:  SELECT COUNT(*) as "total_count"
+FROM "loadtest_wrecycle2"
+WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP) 
+2024-09-02T16:17:32.689113+0530 - repo.druid_util - INFO - Query successful, total_count: 1079200
+2024-09-02T16:17:32.690075+0530 - services.summary_service - INFO - Summary for datasource 'loadtest_sharmaopcua2' added to results
+2024-09-02T16:17:32.691131+0530 - services.summary_service - INFO - Summary for all datasources fetched successfully
+2024-09-02T16:17:33.385965+0530 - repo.druid_util - INFO - Query successful, total_count: 1359000
+2024-09-02T16:17:33.386880+0530 - services.summary_service - INFO - Summary for datasource 'loadtest_wrecycle2' added to results
+2024-09-02T16:17:33.386880+0530 - services.summary_service - INFO - Summary for all datasources fetched successfully
+2024-09-02T16:17:33.391870+0530 - __main__ - INFO - Received request for /get_latest_summary_by_interval
+2024-09-02T16:17:33.392872+0530 - services.summary_service - INFO - Fetching summary for all datasources: ['loadtest_wrecycle2']
+2024-09-02T16:17:33.392872+0530 - services.summary_service - INFO - Processing datasource: loadtest_wrecycle2
+2024-09-02T16:17:33.393868+0530 - repo.druid_util - INFO - Executing SQL query: SELECT COUNT(*) AS total_count
+FROM (
+ SELECT "deviceID"
+ FROM "loadtest_wrecycle2"
+ GROUP BY "deviceID"
+) 
+2024-09-02T16:17:33.396192+0530 - __main__ - INFO - Received request for /get_latest_summary_by_interval
+2024-09-02T16:17:33.396192+0530 - services.summary_service - INFO - Fetching summary for all datasources: ['loadtest_sharmaopcua2']
+2024-09-02T16:17:33.396192+0530 - services.summary_service - INFO - Processing datasource: loadtest_sharmaopcua2
+2024-09-02T16:17:33.397189+0530 - repo.druid_util - INFO - Executing SQL query: SELECT COUNT(*) AS total_count
+FROM (
+ SELECT "deviceID"
+ FROM "loadtest_sharmaopcua2"
+ GROUP BY "deviceID"
+) 
+2024-09-02T16:17:34.121933+0530 - repo.druid_util - INFO - Query successful, total_count: 800
+2024-09-02T16:17:34.123952+0530 - services.summary_service - INFO - Device ID count for datasource 'loadtest_sharmaopcua2': 800
+2024-09-02T16:17:34.125040+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         AVG((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_sharmaopcua2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:34.138186+0530 - repo.druid_util - INFO - Query successful, total_count: 1000
+2024-09-02T16:17:34.139178+0530 - services.summary_service - INFO - Device ID count for datasource 'loadtest_wrecycle2': 1000
+2024-09-02T16:17:34.140205+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         AVG((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_wrecycle2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:34.848039+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:34.850006+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MAX((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_sharmaopcua2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:34.921282+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:34.923270+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MAX((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_wrecycle2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:35.572080+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:35.574158+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MIN((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_sharmaopcua2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:35.654207+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:35.657268+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MIN((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_wrecycle2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:36.304183+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:36.306100+0530 - repo.druid_util - INFO - Executing SQL query:  SELECT COUNT(*) as "total_count"
+FROM "loadtest_sharmaopcua2"
+WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP) 
+2024-09-02T16:17:36.409311+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:36.411360+0530 - repo.druid_util - INFO - Executing SQL query:  SELECT COUNT(*) as "total_count"
+FROM "loadtest_wrecycle2"
+WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP) 
+2024-09-02T16:17:37.025786+0530 - repo.druid_util - INFO - Query successful, total_count: 1080000
+2024-09-02T16:17:37.026751+0530 - services.summary_service - INFO - Summary for datasource 'loadtest_sharmaopcua2' added to results
+2024-09-02T16:17:37.027765+0530 - services.summary_service - INFO - Summary for all datasources fetched successfully
+2024-09-02T16:17:37.110509+0530 - repo.druid_util - INFO - Query successful, total_count: 1359000
+2024-09-02T16:17:37.112516+0530 - services.summary_service - INFO - Summary for datasource 'loadtest_wrecycle2' added to results
+2024-09-02T16:17:37.113510+0530 - services.summary_service - INFO - Summary for all datasources fetched successfully
+2024-09-02T16:17:37.119508+0530 - __main__ - INFO - Received request for /get_latest_summary_by_interval
+2024-09-02T16:17:37.119508+0530 - services.summary_service - INFO - Fetching summary for all datasources: ['loadtest_sharmaopcua2']
+2024-09-02T16:17:37.119508+0530 - services.summary_service - INFO - Processing datasource: loadtest_sharmaopcua2
+2024-09-02T16:17:37.120506+0530 - repo.druid_util - INFO - Executing SQL query: SELECT COUNT(*) AS total_count
+FROM (
+ SELECT "deviceID"
+ FROM "loadtest_sharmaopcua2"
+ GROUP BY "deviceID"
+) 
+2024-09-02T16:17:37.856099+0530 - repo.druid_util - INFO - Query successful, total_count: 800
+2024-09-02T16:17:37.858056+0530 - services.summary_service - INFO - Device ID count for datasource 'loadtest_sharmaopcua2': 800
+2024-09-02T16:17:37.859061+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         AVG((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_sharmaopcua2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:38.582895+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:38.584881+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MAX((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_sharmaopcua2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:39.301307+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:39.303357+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MIN((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_sharmaopcua2"
+    WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:40.014520+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:40.016455+0530 - repo.druid_util - INFO - Executing SQL query:  SELECT COUNT(*) as "total_count"
+FROM "loadtest_sharmaopcua2"
+WHERE "__time" >= TIMESTAMPADD(MONTH, -1, CURRENT_TIMESTAMP) 
+2024-09-02T16:17:40.727193+0530 - repo.druid_util - INFO - Query successful, total_count: 1080000
+2024-09-02T16:17:40.729106+0530 - services.summary_service - INFO - Summary for datasource 'loadtest_sharmaopcua2' added to results
+2024-09-02T16:17:40.730180+0530 - services.summary_service - INFO - Summary for all datasources fetched successfully
+2024-09-02T16:17:45.788201+0530 - __main__ - INFO - Received request for /get_latest_summary_by_interval
+2024-09-02T16:17:45.788201+0530 - services.summary_service - INFO - Fetching summary for all datasources: ['loadtest_cooling2']
+2024-09-02T16:17:45.788201+0530 - services.summary_service - INFO - Processing datasource: loadtest_cooling2
+2024-09-02T16:17:45.789207+0530 - repo.druid_util - INFO - Executing SQL query: SELECT COUNT(*) AS total_count
+FROM (
+ SELECT "deviceID"
+ FROM "loadtest_cooling2"
+ GROUP BY "deviceID"
+) 
+2024-09-02T16:17:46.450939+0530 - repo.druid_util - INFO - Query successful, total_count: 1000
+2024-09-02T16:17:46.452933+0530 - services.summary_service - INFO - Device ID count for datasource 'loadtest_cooling2': 1000
+2024-09-02T16:17:46.453960+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         AVG((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_cooling2"
+    WHERE "__time" >= TIMESTAMPADD(WEEK, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:47.131219+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:47.132232+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MAX((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_cooling2"
+    WHERE "__time" >= TIMESTAMPADD(WEEK, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:47.787438+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:47.788438+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MIN((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_cooling2"
+    WHERE "__time" >= TIMESTAMPADD(WEEK, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:48.441983+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:48.444055+0530 - repo.druid_util - INFO - Executing SQL query:  SELECT COUNT(*) as "total_count"
+FROM "loadtest_cooling2"
+WHERE "__time" >= TIMESTAMPADD(WEEK, -1, CURRENT_TIMESTAMP) 
+2024-09-02T16:17:49.087428+0530 - repo.druid_util - INFO - Query successful, total_count: 1320272
+2024-09-02T16:17:49.088427+0530 - services.summary_service - INFO - Summary for datasource 'loadtest_cooling2' added to results
+2024-09-02T16:17:49.089415+0530 - services.summary_service - INFO - Summary for all datasources fetched successfully
+2024-09-02T16:17:49.093447+0530 - __main__ - INFO - Received request for /get_latest_summary_by_interval
+2024-09-02T16:17:49.094448+0530 - services.summary_service - INFO - Fetching summary for all datasources: ['loadtest_hydrus2_2']
+2024-09-02T16:17:49.094448+0530 - services.summary_service - INFO - Processing datasource: loadtest_hydrus2_2
+2024-09-02T16:17:49.094448+0530 - repo.druid_util - INFO - Executing SQL query: SELECT COUNT(*) AS total_count
+FROM (
+ SELECT "deviceID"
+ FROM "loadtest_hydrus2_2"
+ GROUP BY "deviceID"
+) 
+2024-09-02T16:17:49.833013+0530 - repo.druid_util - INFO - Query successful, total_count: 1000
+2024-09-02T16:17:49.834912+0530 - services.summary_service - INFO - Device ID count for datasource 'loadtest_hydrus2_2': 1000
+2024-09-02T16:17:49.834912+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         AVG((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_hydrus2_2"
+    WHERE "__time" >= TIMESTAMPADD(WEEK, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:50.579596+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:50.580610+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MAX((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_hydrus2_2"
+    WHERE "__time" >= TIMESTAMPADD(WEEK, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:51.316306+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:51.318306+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MIN((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_hydrus2_2"
+    WHERE "__time" >= TIMESTAMPADD(WEEK, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:52.050985+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:52.051984+0530 - repo.druid_util - INFO - Executing SQL query:  SELECT COUNT(*) as "total_count"
+FROM "loadtest_hydrus2_2"
+WHERE "__time" >= TIMESTAMPADD(WEEK, -1, CURRENT_TIMESTAMP) 
+2024-09-02T16:17:52.758406+0530 - repo.druid_util - INFO - Query successful, total_count: 1440000
+2024-09-02T16:17:52.759403+0530 - services.summary_service - INFO - Summary for datasource 'loadtest_hydrus2_2' added to results
+2024-09-02T16:17:52.760405+0530 - services.summary_service - INFO - Summary for all datasources fetched successfully
+2024-09-02T16:17:52.765451+0530 - __main__ - INFO - Received request for /get_latest_summary_by_interval
+2024-09-02T16:17:52.765451+0530 - services.summary_service - INFO - Fetching summary for all datasources: ['loadtest_hydrus_new']
+2024-09-02T16:17:52.765451+0530 - services.summary_service - INFO - Processing datasource: loadtest_hydrus_new
+2024-09-02T16:17:52.765451+0530 - repo.druid_util - INFO - Executing SQL query: SELECT COUNT(*) AS total_count
+FROM (
+ SELECT "deviceID"
+ FROM "loadtest_hydrus_new"
+ GROUP BY "deviceID"
+) 
+2024-09-02T16:17:53.518930+0530 - repo.druid_util - INFO - Query successful, total_count: 1000
+2024-09-02T16:17:53.520853+0530 - services.summary_service - INFO - Device ID count for datasource 'loadtest_hydrus_new': 1000
+2024-09-02T16:17:53.521850+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         AVG((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_hydrus_new"
+    WHERE "__time" >= TIMESTAMPADD(WEEK, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:54.254704+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:54.257560+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MAX((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_hydrus_new"
+    WHERE "__time" >= TIMESTAMPADD(WEEK, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:54.987753+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:54.989806+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MIN((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_hydrus_new"
+    WHERE "__time" >= TIMESTAMPADD(WEEK, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:55.726583+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:55.728544+0530 - repo.druid_util - INFO - Executing SQL query:  SELECT COUNT(*) as "total_count"
+FROM "loadtest_hydrus_new"
+WHERE "__time" >= TIMESTAMPADD(WEEK, -1, CURRENT_TIMESTAMP) 
+2024-09-02T16:17:56.438377+0530 - repo.druid_util - INFO - Query successful, total_count: 1425000
+2024-09-02T16:17:56.440298+0530 - services.summary_service - INFO - Summary for datasource 'loadtest_hydrus_new' added to results
+2024-09-02T16:17:56.440298+0530 - services.summary_service - INFO - Summary for all datasources fetched successfully
+2024-09-02T16:17:56.449290+0530 - __main__ - INFO - Received request for /get_latest_summary_by_interval
+2024-09-02T16:17:56.449290+0530 - services.summary_service - INFO - Fetching summary for all datasources: ['loadtest_duba2']
+2024-09-02T16:17:56.450290+0530 - services.summary_service - INFO - Processing datasource: loadtest_duba2
+2024-09-02T16:17:56.450290+0530 - repo.druid_util - INFO - Executing SQL query: SELECT COUNT(*) AS total_count
+FROM (
+ SELECT "deviceID"
+ FROM "loadtest_duba2"
+ GROUP BY "deviceID"
+) 
+2024-09-02T16:17:57.195831+0530 - repo.druid_util - INFO - Query successful, total_count: 800
+2024-09-02T16:17:57.196821+0530 - services.summary_service - INFO - Device ID count for datasource 'loadtest_duba2': 800
+2024-09-02T16:17:57.197828+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         AVG((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_duba2"
+    WHERE "__time" >= TIMESTAMPADD(WEEK, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:57.947932+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:57.949900+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MAX((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_duba2"
+    WHERE "__time" >= TIMESTAMPADD(WEEK, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:58.677746+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:58.679659+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MIN((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_duba2"
+    WHERE "__time" >= TIMESTAMPADD(WEEK, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:17:59.413456+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:17:59.415443+0530 - repo.druid_util - INFO - Executing SQL query:  SELECT COUNT(*) as "total_count"
+FROM "loadtest_duba2"
+WHERE "__time" >= TIMESTAMPADD(WEEK, -1, CURRENT_TIMESTAMP) 
+2024-09-02T16:18:00.123317+0530 - repo.druid_util - INFO - Query successful, total_count: 1123200
+2024-09-02T16:18:00.125330+0530 - services.summary_service - INFO - Summary for datasource 'loadtest_duba2' added to results
+2024-09-02T16:18:00.125330+0530 - services.summary_service - INFO - Summary for all datasources fetched successfully
+2024-09-02T16:18:00.129329+0530 - __main__ - INFO - Received request for /get_latest_summary_by_interval
+2024-09-02T16:18:00.129329+0530 - services.summary_service - INFO - Fetching summary for all datasources: ['loadtest_pump2']
+2024-09-02T16:18:00.130325+0530 - services.summary_service - INFO - Processing datasource: loadtest_pump2
+2024-09-02T16:18:00.130325+0530 - repo.druid_util - INFO - Executing SQL query: SELECT COUNT(*) AS total_count
+FROM (
+ SELECT "deviceID"
+ FROM "loadtest_pump2"
+ GROUP BY "deviceID"
+) 
+2024-09-02T16:18:00.865530+0530 - repo.druid_util - INFO - Query successful, total_count: 800
+2024-09-02T16:18:00.866521+0530 - services.summary_service - INFO - Device ID count for datasource 'loadtest_pump2': 800
+2024-09-02T16:18:00.868586+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         AVG((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_pump2"
+    WHERE "__time" >= TIMESTAMPADD(WEEK, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:18:01.604227+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:18:01.606117+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MAX((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_pump2"
+    WHERE "__time" >= TIMESTAMPADD(WEEK, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:18:02.342445+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:18:02.344363+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MIN((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_pump2"
+    WHERE "__time" >= TIMESTAMPADD(WEEK, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:18:03.072558+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:18:03.073541+0530 - repo.druid_util - INFO - Executing SQL query:  SELECT COUNT(*) as "total_count"
+FROM "loadtest_pump2"
+WHERE "__time" >= TIMESTAMPADD(WEEK, -1, CURRENT_TIMESTAMP) 
+2024-09-02T16:18:03.782467+0530 - repo.druid_util - INFO - Query successful, total_count: 1113600
+2024-09-02T16:18:03.783459+0530 - services.summary_service - INFO - Summary for datasource 'loadtest_pump2' added to results
+2024-09-02T16:18:03.784506+0530 - services.summary_service - INFO - Summary for all datasources fetched successfully
+2024-09-02T16:18:03.793464+0530 - __main__ - INFO - Received request for /get_latest_summary_by_interval
+2024-09-02T16:18:03.794460+0530 - services.summary_service - INFO - Fetching summary for all datasources: ['loadtest_flow2']
+2024-09-02T16:18:03.794460+0530 - services.summary_service - INFO - Processing datasource: loadtest_flow2
+2024-09-02T16:18:03.795450+0530 - repo.druid_util - INFO - Executing SQL query: SELECT COUNT(*) AS total_count
+FROM (
+ SELECT "deviceID"
+ FROM "loadtest_flow2"
+ GROUP BY "deviceID"
+) 
+2024-09-02T16:18:04.528633+0530 - repo.druid_util - INFO - Query successful, total_count: 800
+2024-09-02T16:18:04.530233+0530 - services.summary_service - INFO - Device ID count for datasource 'loadtest_flow2': 800
+2024-09-02T16:18:04.531301+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         AVG((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_flow2"
+    WHERE "__time" >= TIMESTAMPADD(WEEK, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:18:05.290374+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:18:05.292380+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MAX((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_flow2"
+    WHERE "__time" >= TIMESTAMPADD(WEEK, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:18:06.051908+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:18:06.053899+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MIN((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_flow2"
+    WHERE "__time" >= TIMESTAMPADD(WEEK, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:18:06.784262+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:18:06.786264+0530 - repo.druid_util - INFO - Executing SQL query:  SELECT COUNT(*) as "total_count"
+FROM "loadtest_flow2"
+WHERE "__time" >= TIMESTAMPADD(WEEK, -1, CURRENT_TIMESTAMP) 
+2024-09-02T16:18:07.494402+0530 - repo.druid_util - INFO - Query successful, total_count: 1103200
+2024-09-02T16:18:07.495393+0530 - services.summary_service - INFO - Summary for datasource 'loadtest_flow2' added to results
+2024-09-02T16:18:07.496390+0530 - services.summary_service - INFO - Summary for all datasources fetched successfully
+2024-09-02T16:18:07.504390+0530 - __main__ - INFO - Received request for /get_latest_summary_by_interval
+2024-09-02T16:18:07.504390+0530 - services.summary_service - INFO - Fetching summary for all datasources: ['loadtest_energyprofile2']
+2024-09-02T16:18:07.505386+0530 - services.summary_service - INFO - Processing datasource: loadtest_energyprofile2
+2024-09-02T16:18:07.505386+0530 - repo.druid_util - INFO - Executing SQL query: SELECT COUNT(*) AS total_count
+FROM (
+ SELECT "deviceID"
+ FROM "loadtest_energyprofile2"
+ GROUP BY "deviceID"
+) 
+2024-09-02T16:18:08.241548+0530 - repo.druid_util - INFO - Query successful, total_count: 1000
+2024-09-02T16:18:08.243540+0530 - services.summary_service - INFO - Device ID count for datasource 'loadtest_energyprofile2': 1000
+2024-09-02T16:18:08.243540+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         AVG((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_energyprofile2"
+    WHERE "__time" >= TIMESTAMPADD(WEEK, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:18:09.067413+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:18:09.069422+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MAX((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_energyprofile2"
+    WHERE "__time" >= TIMESTAMPADD(WEEK, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:18:09.801655+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:18:09.803552+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MIN((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_energyprofile2"
+    WHERE "__time" >= TIMESTAMPADD(WEEK, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:18:10.612300+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:18:10.614210+0530 - repo.druid_util - INFO - Executing SQL query:  SELECT COUNT(*) as "total_count"
+FROM "loadtest_energyprofile2"
+WHERE "__time" >= TIMESTAMPADD(WEEK, -1, CURRENT_TIMESTAMP) 
+2024-09-02T16:18:11.322994+0530 - repo.druid_util - INFO - Query successful, total_count: 892000
+2024-09-02T16:18:11.323996+0530 - services.summary_service - INFO - Summary for datasource 'loadtest_energyprofile2' added to results
+2024-09-02T16:18:11.325077+0530 - services.summary_service - INFO - Summary for all datasources fetched successfully
+2024-09-02T16:18:11.332880+0530 - __main__ - INFO - Received request for /get_latest_summary_by_interval
+2024-09-02T16:18:11.332880+0530 - services.summary_service - INFO - Fetching summary for all datasources: ['loadtest_sharmaopcua2']
+2024-09-02T16:18:11.333882+0530 - services.summary_service - INFO - Processing datasource: loadtest_sharmaopcua2
+2024-09-02T16:18:11.333882+0530 - repo.druid_util - INFO - Executing SQL query: SELECT COUNT(*) AS total_count
+FROM (
+ SELECT "deviceID"
+ FROM "loadtest_sharmaopcua2"
+ GROUP BY "deviceID"
+) 
+2024-09-02T16:18:12.062808+0530 - repo.druid_util - INFO - Query successful, total_count: 800
+2024-09-02T16:18:12.064726+0530 - services.summary_service - INFO - Device ID count for datasource 'loadtest_sharmaopcua2': 800
+2024-09-02T16:18:12.065769+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         AVG((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_sharmaopcua2"
+    WHERE "__time" >= TIMESTAMPADD(WEEK, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:18:12.796983+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:18:12.798910+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MAX((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_sharmaopcua2"
+    WHERE "__time" >= TIMESTAMPADD(WEEK, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:18:13.518176+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:18:13.520213+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MIN((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_sharmaopcua2"
+    WHERE "__time" >= TIMESTAMPADD(WEEK, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:18:14.242600+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:18:14.244588+0530 - repo.druid_util - INFO - Executing SQL query:  SELECT COUNT(*) as "total_count"
+FROM "loadtest_sharmaopcua2"
+WHERE "__time" >= TIMESTAMPADD(WEEK, -1, CURRENT_TIMESTAMP) 
+2024-09-02T16:18:14.947946+0530 - repo.druid_util - INFO - Query successful, total_count: 1082400
+2024-09-02T16:18:14.949048+0530 - services.summary_service - INFO - Summary for datasource 'loadtest_sharmaopcua2' added to results
+2024-09-02T16:18:14.950048+0530 - services.summary_service - INFO - Summary for all datasources fetched successfully
+2024-09-02T16:18:14.959027+0530 - __main__ - INFO - Received request for /get_latest_summary_by_interval
+2024-09-02T16:18:14.960029+0530 - services.summary_service - INFO - Fetching summary for all datasources: ['loadtest_wrecycle2']
+2024-09-02T16:18:14.960029+0530 - services.summary_service - INFO - Processing datasource: loadtest_wrecycle2
+2024-09-02T16:18:14.961022+0530 - repo.druid_util - INFO - Executing SQL query: SELECT COUNT(*) AS total_count
+FROM (
+ SELECT "deviceID"
+ FROM "loadtest_wrecycle2"
+ GROUP BY "deviceID"
+) 
+2024-09-02T16:18:15.703866+0530 - repo.druid_util - INFO - Query successful, total_count: 1000
+2024-09-02T16:18:15.705849+0530 - services.summary_service - INFO - Device ID count for datasource 'loadtest_wrecycle2': 1000
+2024-09-02T16:18:15.705849+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         AVG((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_wrecycle2"
+    WHERE "__time" >= TIMESTAMPADD(WEEK, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:18:16.437854+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:18:16.440206+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MAX((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_wrecycle2"
+    WHERE "__time" >= TIMESTAMPADD(WEEK, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:18:17.195830+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:18:17.196731+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MIN((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_wrecycle2"
+    WHERE "__time" >= TIMESTAMPADD(WEEK, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:18:17.925614+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:18:17.927522+0530 - repo.druid_util - INFO - Executing SQL query:  SELECT COUNT(*) as "total_count"
+FROM "loadtest_wrecycle2"
+WHERE "__time" >= TIMESTAMPADD(WEEK, -1, CURRENT_TIMESTAMP) 
+2024-09-02T16:18:18.636537+0530 - repo.druid_util - INFO - Query successful, total_count: 1363000
+2024-09-02T16:18:18.638525+0530 - services.summary_service - INFO - Summary for datasource 'loadtest_wrecycle2' added to results
+2024-09-02T16:18:18.639502+0530 - services.summary_service - INFO - Summary for all datasources fetched successfully
+2024-09-02T16:18:18.644510+0530 - __main__ - INFO - Received request for /get_latest_summary_by_interval
+2024-09-02T16:18:18.644510+0530 - services.summary_service - INFO - Fetching summary for all datasources: ['loadtest_sharmaopcua2']
+2024-09-02T16:18:18.644510+0530 - services.summary_service - INFO - Processing datasource: loadtest_sharmaopcua2
+2024-09-02T16:18:18.645514+0530 - repo.druid_util - INFO - Executing SQL query: SELECT COUNT(*) AS total_count
+FROM (
+ SELECT "deviceID"
+ FROM "loadtest_sharmaopcua2"
+ GROUP BY "deviceID"
+) 
+2024-09-02T16:18:19.374207+0530 - repo.druid_util - INFO - Query successful, total_count: 800
+2024-09-02T16:18:19.376294+0530 - services.summary_service - INFO - Device ID count for datasource 'loadtest_sharmaopcua2': 800
+2024-09-02T16:18:19.377290+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         AVG((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_sharmaopcua2"
+    WHERE "__time" >= TIMESTAMPADD(WEEK, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:18:20.104133+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:18:20.107044+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MAX((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_sharmaopcua2"
+    WHERE "__time" >= TIMESTAMPADD(WEEK, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:18:20.825603+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:18:20.826608+0530 - repo.druid_util - INFO - Executing SQL query: 
+    SELECT
+         MIN((CAST(ingestionTime AS BIGINT) - CAST(creationTime AS BIGINT)) / 1000.0) AS res
+    FROM "loadtest_sharmaopcua2"
+    WHERE "__time" >= TIMESTAMPADD(WEEK, -1, CURRENT_TIMESTAMP)
+
+2024-09-02T16:18:21.546695+0530 - repo.druid_util - INFO - Query successful, retrieved 1 records
+2024-09-02T16:18:21.547599+0530 - repo.druid_util - INFO - Executing SQL query:  SELECT COUNT(*) as "total_count"
+FROM "loadtest_sharmaopcua2"
+WHERE "__time" >= TIMESTAMPADD(WEEK, -1, CURRENT_TIMESTAMP) 
+2024-09-02T16:18:22.251185+0530 - repo.druid_util - INFO - Query successful, total_count: 1083200
+2024-09-02T16:18:22.252102+0530 - services.summary_service - INFO - Summary for datasource 'loadtest_sharmaopcua2' added to results
+2024-09-02T16:18:22.253086+0530 - services.summary_service - INFO - Summary for all datasources fetched successfully
